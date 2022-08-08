@@ -86,6 +86,11 @@ public class StartManager : MonoBehaviour
         sfxSlider.value = sfxVolume.volume;
     }
 
+    public void SetFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+    }
+
     private IEnumerator HighlightButton(GameObject button)
     {
         animator.SetTrigger("Enter");
