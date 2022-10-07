@@ -100,7 +100,7 @@ public class LeahEvent : Event
                 leahObject.animator.SetBool("Selected", true);
                 leahObject.animator.SetBool("Left", true);
             }
-            leahObject.transform.localPosition = Vector2.MoveTowards(leahObject.transform.localPosition, new Vector2(targetPosition.x, leahObject.transform.localPosition.y), 2.5f * Time.deltaTime);
+            leahObject.transform.localPosition = Vector2.MoveTowards(leahObject.transform.localPosition, new Vector2(targetPosition.x, leahObject.transform.localPosition.y), 2.5f * Time.deltaTime); 
             yield return null;
         }
         while(leahObject.transform.localPosition.y != targetPosition.y)

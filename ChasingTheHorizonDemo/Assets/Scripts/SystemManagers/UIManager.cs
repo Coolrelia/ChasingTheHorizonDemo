@@ -62,17 +62,17 @@ public class UIManager : MonoBehaviour
             if(transform.position == unit.transform.position && unit.unit.allyUnit && unit.currentHealth > 0)
             {
                 unitName.text = unit.unit.unitName;
-                unitHP.text = "HP: " + unit.currentHealth.ToString() + "/" + unit.unit.statistics.health.ToString();
-                unitEXP.text = "Exp: " + unit.unit.exp.ToString();
-                unitLevel.text = "Lvl: " + unit.unit.level.ToString();
-                unitAgility.text = "Agl: " + unit.unit.statistics.agility.ToString();
+                unitHP.text = "HP: " + unit.currentHealth.ToString() + "/" + unit.unitHP.ToString();
+                unitEXP.text = "Exp: " + unit.exp.ToString();
+                unitLevel.text = "Lvl: " + unit.level.ToString();
+                unitAgility.text = "Agl: " + unit.unitAgi.ToString();
 
-                unitStrength.text = "Str: " + unit.unit.statistics.strength.ToString();
-                unitMagic.text = "Mag: " + unit.unit.statistics.magic.ToString();
-                unitDefense.text = "Def: " + unit.unit.statistics.defense.ToString();
-                unitResistance.text = "Res: " + unit.unit.statistics.resistance.ToString();
+                unitStrength.text = "Str: " + unit.unitStr.ToString();
+                unitMagic.text = "Mag: " + unit.unitMag.ToString();
+                unitDefense.text = "Def: " + unit.unitDef.ToString();
+                unitResistance.text = "Res: " + unit.unitRes.ToString();
 
-                unitProficiency.text = "Pro: " + unit.unit.statistics.proficiency.ToString();
+                unitProficiency.text = "Pro: " + unit.unitPrf.ToString();
                 unitMovement.text = "Mov: " + unit.unit.statistics.movement.ToString();
                 unitMotivation.text = "Mot: " + unit.unit.statistics.motivation.ToString();
 
@@ -108,14 +108,14 @@ public class UIManager : MonoBehaviour
             if(transform.position == unit.transform.position && !unit.unit.allyUnit && unit.currentHealth > 0)
             {
                 enemyName.text = unit.unit.unitName;
-                enemyHP.text = "HP: " + unit.currentHealth.ToString() + "/" + unit.unit.statistics.health.ToString();
-                enemyLevel.text = "Lvl: " + unit.unit.level.ToString();
-                enemyAgility.text = "Agl: " + unit.unit.statistics.agility.ToString();
+                enemyHP.text = "HP: " + unit.currentHealth.ToString() + "/" + unit.unitHP.ToString();
+                enemyLevel.text = "Lvl: " + unit.level.ToString();
+                enemyAgility.text = "Agl: " + unit.unitAgi.ToString();
 
-                enemyStrength.text = "Str: " + unit.unit.statistics.strength.ToString();
-                enemyMagic.text = "Mag: " + unit.unit.statistics.magic.ToString();
-                enemyDefense.text = "Def: " + unit.unit.statistics.defense.ToString();
-                enemyResistance.text = "Res: " + unit.unit.statistics.resistance.ToString();
+                enemyStrength.text = "Str: " + unit.unitStr.ToString();
+                enemyMagic.text = "Mag: " + unit.unitMag.ToString();
+                enemyDefense.text = "Def: " + unit.unitDef.ToString();
+                enemyResistance.text = "Res: " + unit.unitRes.ToString();
 
                 enemyWeapon.color = new Color32(255, 255, 255, 255);
                 enemyWeapon.sprite = unit.equippedWeapon.itemIcon;

@@ -52,6 +52,7 @@ public class OpheliaEvent : Event
         yield return new WaitUntil(() => !screenDim.gameObject.activeSelf);
         yield return new WaitForSeconds(1f);
         //Move Ophelia on screen
+        cursor.cursorControls.DeactivateInput();
         opheliaObject.gameObject.SetActive(true);
         StartCoroutine(MoveUnit(opheliaObject, new Vector2(2f, 10f)));
         yield return new WaitUntil(() => opheliaObject.transform.localPosition == new Vector3(2, 10));

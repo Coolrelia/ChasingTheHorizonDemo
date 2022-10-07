@@ -13,11 +13,22 @@ public class UnitLoader : MonoBehaviour
     //VARIABLES
     [Header("Varibles")]
     public int currentHealth = 0;
+    public int level = 1;
+    public int exp = 0;
     public bool hasMoved = false;
     public bool hasAttacked = false;
     public bool rested = false;
     public bool attackable = false;
     public Vector2 originalPosition = new Vector2(0, 0);
+
+    [Header("Stats")]
+    public int unitHP;
+    public int unitStr;
+    public int unitMag;
+    public int unitDef;
+    public int unitRes;
+    public int unitPrf;
+    public int unitAgi;
 
     //REFERENCES
     [Header("References")]
@@ -214,6 +225,50 @@ public class UnitLoader : MonoBehaviour
     public void FollowPath()
     {
         StartCoroutine(NodeMovement());
+    }
+
+    public void GainExperience(int gainedEXP)
+    {
+        exp += gainedEXP;
+    }
+    public void LevelUp()
+    {
+        int hpRoll = Random.Range(0, 99);
+        int strRoll = Random.Range(0, 99);
+        int magRoll = Random.Range(0, 99);
+        int defRoll = Random.Range(0, 99);
+        int resRoll = Random.Range(0, 99);
+        int prfRoll = Random.Range(0, 99);
+        int agiRoll = Random.Range(0, 99);
+
+        if(hpRoll < unit.growthRates.healthGrowth)
+        {
+            unitHP++;
+        }
+        if(strRoll < unit.growthRates.strengthGrowth)
+        {
+            unitStr++;
+        }
+        if(magRoll < unit.growthRates.magicGrowth)
+        {
+            unitMag++;
+        }
+        if(defRoll < unit.growthRates.defenseGrowth)
+        {
+            unitDef++;
+        }
+        if(resRoll < unit.growthRates.resistanceGrowth)
+        {
+            unitRes++;
+        }
+        if(prfRoll < unit.growthRates.proficiencyGrowth)
+        {
+            unitPrf++;
+        }
+        if(agiRoll < unit.growthRates.agilityGrowth)
+        {
+            unitAgi++;
+        }
     }
 
     public void Death()

@@ -317,7 +317,7 @@ RectTransform:
   - {fileID: 2050830596}
   - {fileID: 197548524}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -446,6 +446,7 @@ RectTransform:
   - {fileID: 1633716254}
   - {fileID: 297010596}
   - {fileID: 1316764447}
+  - {fileID: 293006183}
   - {fileID: 286268383}
   - {fileID: 1445138292}
   - {fileID: 2006802593}
@@ -837,7 +838,7 @@ RectTransform:
   - {fileID: 735123566}
   - {fileID: 808922606}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -982,7 +983,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 21536393}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2764,7 +2765,7 @@ RectTransform:
   - {fileID: 191962998}
   - {fileID: 1801357466}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3157,11 +3158,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 177340611}
@@ -4271,11 +4281,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: a3d7b9b3af39b8247a2bf7bea7313b90, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 0}
@@ -5177,6 +5196,7 @@ MonoBehaviour:
   combatReadout: {fileID: 1316764446}
   attackerHealth: {fileID: 2063015016}
   defenderHealth: {fileID: 1447685950}
+  expSlider: {fileID: 293006184}
   battleText: {fileID: 1739066925469569432, guid: 221ee98ba9144d344b005f2baa0dccc2,
     type: 3}
 --- !u!114 &273220394
@@ -5338,7 +5358,7 @@ RectTransform:
   - {fileID: 1749844675}
   - {fileID: 2063867793}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5591,7 +5611,7 @@ RectTransform:
   - {fileID: 143271974}
   - {fileID: 953754560}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5733,6 +5753,149 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287688175}
+  m_CullTransparentMesh: 0
+--- !u!1 &293006182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 293006183}
+  - component: {fileID: 293006187}
+  - component: {fileID: 293006186}
+  - component: {fileID: 293006185}
+  - component: {fileID: 293006184}
+  m_Layer: 5
+  m_Name: EXPbar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &293006183
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293006182}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 999955810}
+  m_Father: {fileID: 21536393}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 80.9, y: -123}
+  m_SizeDelta: {x: 10, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &293006184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293006182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 293006186}
+  m_FillRect: {fileID: 999955810}
+  m_HandleRect: {fileID: 0}
+  m_Direction: 3
+  m_MinValue: 0
+  m_MaxValue: 100
+  m_WholeNumbers: 0
+  m_Value: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &293006185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293006182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &293006186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293006182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &293006187
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293006182}
   m_CullTransparentMesh: 0
 --- !u!1 &297010595
 GameObject:
@@ -6196,7 +6359,7 @@ RectTransform:
   - {fileID: 1096516821}
   - {fileID: 1376454899}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -7871,11 +8034,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 465964012}
@@ -9757,7 +9929,7 @@ RectTransform:
   - {fileID: 607737107}
   - {fileID: 94060822}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10395,7 +10567,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 21536393}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11059,7 +11231,7 @@ RectTransform:
   - {fileID: 471586844}
   - {fileID: 178149197}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13121,11 +13293,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 841415813}
@@ -13261,7 +13442,7 @@ RectTransform:
   - {fileID: 2062776192}
   - {fileID: 2054155894}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13908,7 +14089,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 21536393}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -14058,11 +14239,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: a3d7b9b3af39b8247a2bf7bea7313b90, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 0}
@@ -14665,7 +14855,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 21536393}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20207,6 +20397,81 @@ Transform:
   m_Father: {fileID: 878704554}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &999955809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 999955810}
+  - component: {fileID: 999955812}
+  - component: {fileID: 999955811}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &999955810
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999955809}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 293006183}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &999955811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999955809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.7742731, b: 0.8584906, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &999955812
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999955809}
+  m_CullTransparentMesh: 0
 --- !u!1 &1003744102
 GameObject:
   m_ObjectHideFlags: 0
@@ -20663,7 +20928,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 21536393}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -22292,11 +22557,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 1125065826}
@@ -22405,7 +22679,7 @@ RectTransform:
   - {fileID: 884738114}
   - {fileID: 242120481}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23193,7 +23467,7 @@ RectTransform:
   - {fileID: 849805413}
   - {fileID: 416741104}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -25030,11 +25304,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: 9b7ba59209b8b1149bdf640216601f9a, type: 2}
   behaviorTag: {fileID: 1336252262}
   battleDialogue: {fileID: 0}
@@ -30729,7 +31012,7 @@ RectTransform:
   - {fileID: 283496568}
   - {fileID: 1622034540}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -32633,11 +32916,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: 9b7ba59209b8b1149bdf640216601f9a, type: 2}
   behaviorTag: {fileID: 1589565372}
   battleDialogue: {fileID: 0}
@@ -33375,11 +33667,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: cc2898325ea080f4ba5ee8e6d5cfa415, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 1625918928}
@@ -40417,11 +40718,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: 9d670ac7311fe314c83381b72f570d0e, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 1807665275}
@@ -47421,11 +47731,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: cc2898325ea080f4ba5ee8e6d5cfa415, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 1988119474}
@@ -47644,7 +47963,7 @@ RectTransform:
   m_Children:
   - {fileID: 609454844}
   m_Father: {fileID: 21536393}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -48894,11 +49213,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  level: 1
+  exp: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
   unit: {fileID: 11400000, guid: 9d670ac7311fe314c83381b72f570d0e, type: 2}
   behaviorTag: {fileID: 0}
   battleDialogue: {fileID: 2096008269}

@@ -76,9 +76,6 @@ public class AIManager : MonoBehaviour
             currentEnemy = enemies[i];
             enemyAnimator = currentEnemy.animator;
 
-            //StartCoroutine(MoveCamera(enemies[i]));
-            //yield return new WaitUntil(() => mainCamera.transform.position == cameraTarget);
-
             if(enemies[i].behaviorTag.blitz)
             {               
                 StartCoroutine(MoveCamera(enemies[i]));

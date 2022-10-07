@@ -22,7 +22,10 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject combatReadout = null;
     [SerializeField] private Slider attackerHealth = null;
     [SerializeField] private Slider defenderHealth = null;
+    [SerializeField] private Slider expSlider = null;
     [SerializeField] private BattleText battleText = null;
+
+    private bool didHit;
 
     private int lowhealthIndicator = 0;
 
@@ -40,6 +43,8 @@ public class CombatManager : MonoBehaviour
 
         defenderHealth.maxValue = defender.unit.statistics.health;
         defenderHealth.value = defender.currentHealth;
+
+        didHit = false;
     }
     private IEnumerator Attack(UnitLoader attacker, UnitLoader defender)
     {
@@ -83,9 +88,15 @@ public class CombatManager : MonoBehaviour
         if(CheckForDeaths(attacker, defender) == "Attacker")
         {
             attacker.Death();
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.3f);            
             combatReadout.SetActive(false);
-            if(attacker.unit.allyUnit)
+            if (!attacker.unit.allyUnit)
+            {
+                GainExperience(attacker, defender);
+                yield return new WaitForSeconds(1f);
+                yield return new WaitUntil(() => !expSlider.gameObject.activeSelf);
+            }
+            if (attacker.unit.allyUnit)
             {
                 cursor.cursorControls.SwitchCurrentActionMap("MapScene");
                 cursor.SetState(new MapState(cursor));
@@ -103,8 +114,14 @@ public class CombatManager : MonoBehaviour
             yield return new WaitUntil(() => !screenDim.activeSelf);
 
             defender.Death();
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.2f);            
             combatReadout.SetActive(false);
+            if (!defender.unit.allyUnit)
+            {
+                GainExperience(attacker, defender);
+                yield return new WaitForSeconds(1f);
+                yield return new WaitUntil(() => !expSlider.gameObject.activeSelf);
+            }
             attacker.Rest();
             if(attacker.unit.allyUnit)
             {
@@ -133,9 +150,15 @@ public class CombatManager : MonoBehaviour
             if(CheckForDeaths(attacker, defender) == "Attacker")
             {
                 attacker.Death();
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.2f);                
                 combatReadout.SetActive(false);
-                if(attacker.unit.allyUnit)
+                if (!attacker.unit.allyUnit)
+                {
+                    GainExperience(attacker, defender);
+                    yield return new WaitForSeconds(1f);
+                    yield return new WaitUntil(() => !expSlider.gameObject.activeSelf);
+                }
+                if (attacker.unit.allyUnit)
                 {
                     cursor.cursorControls.SwitchCurrentActionMap("MapScene");
                     cursor.SetState(new MapState(cursor));
@@ -153,8 +176,14 @@ public class CombatManager : MonoBehaviour
                 yield return new WaitUntil(() => !screenDim.activeSelf);
 
                 defender.Death();
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.2f);               
                 combatReadout.SetActive(false);
+                if (!defender.unit.allyUnit)
+                {
+                    GainExperience(attacker, defender);
+                    yield return new WaitForSeconds(1f);
+                    yield return new WaitUntil(() => !expSlider.gameObject.activeSelf);
+                }
                 attacker.Rest();
                 if(attacker.unit.allyUnit)
                 {
@@ -184,6 +213,9 @@ public class CombatManager : MonoBehaviour
                 }
                 yield return new WaitForSeconds(0.3f);
                 combatReadout.SetActive(false);
+                GainExperience(attacker, defender);
+                yield return new WaitForSeconds(1f);
+                yield return new WaitUntil(() => !expSlider.gameObject.activeSelf);
                 attacker.Rest();
                 if(attacker.unit.allyUnit)
                 {
@@ -193,7 +225,8 @@ public class CombatManager : MonoBehaviour
                 yield return null;
             }
             combatReadout.SetActive(false);
-            if(CheckForDeaths(attacker, defender) == "Defender" || CheckForDeaths(attacker, defender) == null)
+            yield return new WaitUntil(() => !expSlider.gameObject.activeSelf);
+            if (CheckForDeaths(attacker, defender) == "Defender" || CheckForDeaths(attacker, defender) == null)
             {
                 defender.Death();
                 attacker.Rest();
@@ -207,6 +240,7 @@ public class CombatManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         combatReadout.SetActive(false);
+        yield return new WaitUntil(() => !expSlider.gameObject.activeSelf);
         if(CheckForDeaths(attacker, defender) == "Defender" || CheckForDeaths(attacker, defender) == null)
         {
             attacker.Rest();
@@ -233,7 +267,8 @@ public class CombatManager : MonoBehaviour
         if(TurnManager.instance.currentState.stateType == TurnState.StateType.Player)
         {
             cursor.animator.SetBool("Invisible", false);
-        }        
+        }
+
         yield return null;
     }
 
@@ -550,6 +585,7 @@ public class CombatManager : MonoBehaviour
             return false;
 
         else
+            if (unit.unit.allyUnit) didHit = true;            
             return true;
     }
     private bool CritRoll(UnitLoader unit)
@@ -560,6 +596,7 @@ public class CombatManager : MonoBehaviour
             return false;
 
         else
+            if (unit.unit.allyUnit) didHit = true;
             return true;
     }
 
@@ -595,5 +632,56 @@ public class CombatManager : MonoBehaviour
     private float CheckDistance(UnitLoader unit1, UnitLoader unit2)
     {
         return Mathf.Abs(unit1.transform.position.x - unit2.transform.position.x) + Mathf.Abs(unit1.transform.position.y - unit2.transform.position.y);
+    }
+
+    private void GainExperience(UnitLoader attacker, UnitLoader defender)
+    {
+        //if the ally doesn't hit, don't gain exp
+        //if the ally kills, gain extra exp
+        if(!didHit)
+        {
+            return;
+        }
+        else
+        {
+            if(attacker.unit.allyUnit)
+            {
+                int gainedExperience = (1 * (defender.level + 9) / 10) * (Mathf.Abs(attacker.level - defender.level) + 1);
+                
+                expSlider.gameObject.SetActive(true);
+                expSlider.GetComponent<RectTransform>().anchoredPosition = WorldToCanvasSpace(attacker.gameObject);
+                expSlider.value = attacker.exp;
+                attacker.GainExperience(10);
+                StartCoroutine(UpdateEXP(attacker));
+                return;
+            }
+            else if(defender.unit.allyUnit)
+            {
+                int gainedExperience = (1 * (attacker.level + 9) / 10) * (Mathf.Abs(defender.level - attacker.level) + 1);
+                
+                expSlider.gameObject.SetActive(true);
+                expSlider.GetComponent<RectTransform>().anchoredPosition = WorldToCanvasSpace(defender.gameObject);
+                expSlider.value = defender.exp;
+                defender.GainExperience(10);
+                StartCoroutine(UpdateEXP(defender));
+                return;
+            }
+        }
+    }
+
+    private IEnumerator UpdateEXP(UnitLoader unit)
+    {
+        yield return new WaitForSeconds(0.25f);
+        while(expSlider.value != unit.exp)
+        {
+            expSlider.value += 1;
+            yield return new WaitForSeconds(0.05f);
+        }
+        if(expSlider.value >= 100)
+        {
+            unit.LevelUp();
+        }
+        yield return new WaitForSeconds(0.25f);
+        expSlider.gameObject.SetActive(false);        
     }
 }

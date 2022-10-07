@@ -46,6 +46,11 @@ public class MusicPlayer : MonoBehaviour
     {
         source.Pause();
     }
+    public void RestartTrack()
+    {
+        source.Stop();
+        source.Play();
+    }
 
     private IEnumerator FadeVolume(AudioClip track)
     {

@@ -21,9 +21,9 @@ public class UnitSlot : MonoBehaviour
         sprite.sprite = unit.unit.sprite;
         unitName.text = unit.unit.unitName;
         unitWeapon.text = unit.equippedWeapon.name;
-        unitLvl.text = unit.unit.level.ToString();
-        unitEXP.text = unit.unit.exp.ToString();
-        unitHealth.text = unit.currentHealth.ToString() + " / " + unit.unit.statistics.health.ToString();
+        unitLvl.text = unit.level.ToString();
+        unitEXP.text = unit.exp.ToString();
+        unitHealth.text = unit.currentHealth.ToString() + " / " + unit.unitHP.ToString();
     }
 
     private void OnDisable()

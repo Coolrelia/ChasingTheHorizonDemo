@@ -1,0 +1,46 @@
+{CG=Cutscene1]
+/SONG=Snowy]
+|FX=Arrow]
+
+[NAME=Roland]Gah! Damn it all... I'm going after it!
+
+[NAME=Edgar]The rabbit? It'll be long gone by now, Roland.
+Here, let's try this again. Try to hit that knot in the tree over there...
+Remember: One clean motion. No hesitation.
+
+[NAME=Roland]Alright... let's try this again. H-
+
+[NAME=Leah]Oh! Simon! Here they are! Though it doesn't look like they've caught much...
+
+[NAME=Roland]Ah! Leah, you threw off my-
+
+[NAME=Simon]Your shot? I don't see anything nearby. I know the rabbits blend in quite well with the snow, but I'd like to think I've gotten pretty good at spotting them.
+
+[NAME=Edgar]Well Simon, that would be because he was aiming for the tree!
+
+[NAME=Roland]Edgar!
+
+[NAME=Leah]Hmm, I'm not sure that the tree would make a great dinner even if he had hit it.
+
+[NAME=Simon]Come on guys, we can't really be slacking in the winter time! Not like we're making any money from the mines for the next couple months with this weather.
+
+[NAME=Edgar]Oh, you know I've hunted more than my fair share this season already!
+
+[NAME=Leah]And yet, you sit here, empty handed. Sounds like larger portions for us tonight, wouldn't you say, Simon?
+
+[NAME=Simon]Hmmmm, maybe we should take pity? Roland is pretty handy when the mines are running. Edgar though...
+
+[NAME=Edgar]Wait, wh-
+
+[NAME=Roland]Hahaha, the tables have turned!
+Oh, speaking of the mines, the mail came today, right Simon? Any word about that rock we sent to the Royal Institute last autumn?
+
+[NAME=Simon]Still none. Though I can't blame them. I'm sure "hayseed up in the Taldur Mountains" sending them a rock isn't very high on the priority list, given the war and all.
+
+[NAME=Edgar]I mean, with how the thing glows, there's no way it could be just a rock.
+
+[NAME=Roland]Yeah. That stuff was back breaking to mine, even though it was just that little piece. I'm sure someone who knew what they were doing could make something good out of it.
+
+[NAME=Leah]I guess we'll just have to wait and see. Now, what say you we get back and start cooking dinner before it gets dark? Serena's waiting, I'm sure.
+
+EndQueue

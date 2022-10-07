@@ -48,6 +48,7 @@ public class LoseManager : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+        MusicPlayer.instance.RestartTrack();
     }
     public void TitleScreen()
     {

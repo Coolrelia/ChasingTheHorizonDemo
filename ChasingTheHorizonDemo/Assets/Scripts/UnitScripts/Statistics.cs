@@ -15,7 +15,6 @@ public struct Statistics
     public int motivation;
     public int agility;
     public int movement;
-
      
     public Statistics (int hp = 0, int str = 0, int mag = 0, int def = 0, int res = 0, int prof = 0, int mot = 0, int agi = 0, int mov = 0)
     {
@@ -103,6 +102,30 @@ public struct Statistics
             (a.movement / b.movement)
         );
 
+}
+
+[System.Serializable]
+public struct Growthrates
+{
+    public int healthGrowth;
+    public int strengthGrowth;
+    public int magicGrowth;
+    public int defenseGrowth;
+    public int resistanceGrowth;
+    public int proficiencyGrowth;
+    public int agilityGrowth;
+
+    public Growthrates(int hp = 0, int str = 0, int mag = 0, int def = 0, int res = 0, int prof = 0, int agi = 0)
+    {
+        //Constructor
+        healthGrowth = hp;
+        strengthGrowth = str;
+        magicGrowth = mag;
+        defenseGrowth = def;
+        resistanceGrowth = res;
+        proficiencyGrowth = prof;
+        agilityGrowth = agi;
+    }
 }
 
     

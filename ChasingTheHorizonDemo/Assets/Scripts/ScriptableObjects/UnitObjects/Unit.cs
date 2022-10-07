@@ -14,9 +14,5 @@ public class Unit : ScriptableObject
 
     //Put the statistics
     public Statistics statistics;
-
-    //wont change yet but these should be on the monobehaviour
-    //Scriptable objects aren't made to be changed during gameplay but define a data set to be loaded onto blank objects
-    public int level;
-    public int exp;
+    public Growthrates growthRates;
 }
