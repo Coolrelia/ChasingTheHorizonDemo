@@ -49,8 +49,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        AllyUnitUI();
-        EnemyUnitUI();
+        //AllyUnitUI();
+        //EnemyUnitUI();
         TileUI();
     }
 

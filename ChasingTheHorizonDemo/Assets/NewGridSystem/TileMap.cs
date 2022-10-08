@@ -22,6 +22,9 @@ public class TileMap : MonoBehaviour
     public List<Node> walkableTiles;
     public List<Node> attackableTiles;
 
+    public List<UnitLoader> allyUnits = new List<UnitLoader>();
+    public List<UnitLoader> enemyUnits = new List<UnitLoader>();
+
     private void Start()
     {
         mapValues = string.Concat(mapData.text.Where(c => !char.IsWhiteSpace(c)));
@@ -30,6 +33,18 @@ public class TileMap : MonoBehaviour
         GeneratePathfindingGraph();
         GenerateMapFromFile();
         GenerateMapVisuals();
+
+        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        {
+            if(unit.unit.allyUnit)
+            {
+                allyUnits.Add(unit);
+            }
+            else
+            {
+                enemyUnits.Add(unit);
+            }
+        }
     }
     
     private void InitializeMapData()
@@ -118,7 +133,7 @@ public class TileMap : MonoBehaviour
             {
                 tiles[x, y] = (int)char.GetNumericValue(mapValues[x]);
             }
-            mapValues = mapValues.Remove(0, 20);
+            //mapValues = mapValues.Remove(0, 20);
             y++;
         }   
     }
@@ -636,7 +651,7 @@ public class TileMap : MonoBehaviour
     }
     public bool IsOccupiedByEnemy(int x, int y)
     {
-        foreach (UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach (UnitLoader unit in enemyUnits)
         {
             if(unit.transform.localPosition == new Vector3(x, y))
             {

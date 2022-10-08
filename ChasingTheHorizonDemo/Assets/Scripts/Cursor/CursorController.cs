@@ -59,6 +59,8 @@ public class CursorController : MonoBehaviour
         currentPosition = transform.localPosition;
         highlight = GetComponent<SpriteRenderer>().sprite;
         enemyTurn = false;
+        currentMap = FindObjectOfType<TileMap>();
+        SetState(new MapState(this));
     }    
 
     public void RequestMove(InputAction.CallbackContext ctx)
@@ -110,8 +112,8 @@ public class CursorController : MonoBehaviour
             currentPosition -= poppedRequest;
             yield break;
         }
-        SoundManager.instance.PlayFX(2);
-        MoveCamera();
+        //SoundManager.instance.PlayFX(2);
+        //MoveCamera();
 
         while((Vector2)transform.localPosition != currentPosition)
         {
@@ -176,23 +178,18 @@ public class CursorController : MonoBehaviour
 
     public void SelectUnit()
     {
-        foreach(UnitLoader unit in TurnManager.instance.allyUnits)
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        if(col.Length > 0)
         {
-            if(transform.localPosition == unit.transform.localPosition && currentMap.selectedUnit == null)
+            UnitLoader unit = col[0].GetComponent<UnitLoader>();
+            if(unit.unit.allyUnit && unit.rested == false)
             {
-                if(unit.unit.allyUnit && unit.rested == false)
-                {
-                    animator.SetTrigger("Rotate");
-                    enemyInventory.SetActive(false);
-                    SoundManager.instance.PlayFX(0);
-                    currentMap.selectedUnit = unit;
-                    unit.Selected();
-                    SetState(new UnitState(this));
-                    foreach(UnitLoader enemy in TurnManager.instance.enemyUnits)
-                    {
-                        enemy.spriteRenderer.color = Color.white;
-                    }
-                }
+                animator.SetTrigger("Rotate");
+                enemyInventory.SetActive(false);
+                //SoundManager.instance.PlayFX(0);
+                currentMap.selectedUnit = unit;
+                unit.Selected();
+                SetState(new UnitState(this));
             }
         }
     }
@@ -203,7 +200,7 @@ public class CursorController : MonoBehaviour
             if(currentMap.selectedUnit.currentPath == null)
             {
                 animator.SetTrigger("CounterRotate");
-                SoundManager.instance.PlayFX(1);
+                //SoundManager.instance.PlayFX(1);
                 currentMap.selectedUnit.animator.SetBool("Selected", false);
                 currentMap.selectedUnit = null;
                 currentMap.DehighlightTiles();
@@ -213,11 +210,13 @@ public class CursorController : MonoBehaviour
     }
     public void SelectEnemy()
     {
-        foreach(UnitLoader unit in TurnManager.instance.enemyUnits)
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        if (col.Length > 0)
         {
-            if(transform.localPosition == unit.transform.localPosition)
+            UnitLoader unit = col[0].GetComponent<UnitLoader>();
+            if (!unit.unit.allyUnit)
             {
-                SoundManager.instance.PlayFX(0);
+                //SoundManager.instance.PlayFX(0);
                 currentMap.DehighlightTiles();
                 currentMap.walkableTiles = currentMap.GenerateWalkableRange((int)unit.transform.localPosition.x, (int)unit.transform.localPosition.y, unit.unit.statistics.movement, unit);
                 currentMap.HighlightTiles();
@@ -230,7 +229,7 @@ public class CursorController : MonoBehaviour
     public void ResetTiles()
     {
         currentMap.DehighlightTiles();
-        foreach(UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach(UnitLoader unit in currentMap.enemyUnits)
         {
             if(unit.spriteRenderer.color == Color.red)
             {
@@ -354,16 +353,13 @@ public class CursorController : MonoBehaviour
 
     public void DisplayMenu()
     {
-        foreach(Node n in currentMap.graph)
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        if (col.Length <= 0)
         {
-            if(transform.localPosition == new Vector3(n.x, n.y) && currentMap.IsOccupied(n.x, n.y) == false)
-            {
-                menu.SetActive(true);
-                SoundManager.instance.PlayFX(11);
-                SetState(new MenuState(this));
-                cursorControls.SwitchCurrentActionMap("UI");
-                break;
-            }
+            menu.SetActive(true);
+         //   SoundManager.instance.PlayFX(11);
+            SetState(new MenuState(this));
+            cursorControls.SwitchCurrentActionMap("UI");
         }
     }
     public void CloseMenu()

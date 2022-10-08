@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 public class DialogueManagerPlus : MonoBehaviour
 {
@@ -11,6 +10,10 @@ public class DialogueManagerPlus : MonoBehaviour
     [SerializeField] private Image portraitImage;
     [SerializeField] private Image backgroundImage;
     [SerializeField] private AudioClip currentAudio;
+    [SerializeField] private Image fadeImage;
+
+    private bool dialogueFinished = false;
+    public float textDelay;
 
     public TextAsset conversationTextAsset;
     public Sprite[] portraits;
@@ -18,7 +21,7 @@ public class DialogueManagerPlus : MonoBehaviour
     public AudioClip[] audioTracks;
 
     private Queue<string> inputStream = new Queue<string>();
-    [SerializeField] private Queue<string> outputStream = new Queue<string>();
+    private Queue<string> outputStream = new Queue<string>();
 
     private void Start()
     {
@@ -86,7 +89,7 @@ public class DialogueManagerPlus : MonoBehaviour
             string name = outputStream.Peek();
             name = outputStream.Dequeue().Substring(name.IndexOf('=') + 1, name.IndexOf(']') - (name.IndexOf('=') + 1));
             SetAudio(name);
-            AdvanceDialogue();
+            PrintDialogue();
         }
 
         else if(outputStream.Peek().Contains("{CG="))
@@ -94,7 +97,7 @@ public class DialogueManagerPlus : MonoBehaviour
             string name = outputStream.Peek();
             name = outputStream.Dequeue().Substring(name.IndexOf('=') + 1, name.IndexOf(']') - (name.IndexOf('=') + 1));            
             SetCG(name);
-            AdvanceDialogue();
+            PrintDialogue();
         }
         
         else if (outputStream.Peek().Contains("|FX="))
@@ -102,7 +105,7 @@ public class DialogueManagerPlus : MonoBehaviour
             string name = outputStream.Peek();
             name = outputStream.Dequeue().Substring(name.IndexOf('=') + 1, name.IndexOf(']') - (name.IndexOf('=') + 1));
             print("play " + name + " sound effect");
-            AdvanceDialogue();
+            PrintDialogue();
         }
 
         else if(outputStream.Peek().Contains("[NAME="))
@@ -115,7 +118,7 @@ public class DialogueManagerPlus : MonoBehaviour
         }
         else
         {
-            dialogueText.text = outputStream.Dequeue();
+            StartCoroutine(WriteText(outputStream.Dequeue()));
         }
     }
 
@@ -149,10 +152,28 @@ public class DialogueManagerPlus : MonoBehaviour
             }
         }
     }
+    private void FadeScreen()
+    {
+
+    }
+    private IEnumerator WriteText(string input)
+    {
+        dialogueFinished = false;
+        dialogueText.text = "";
+        for (int i = 0; i < input.Length; i++)
+        {
+            dialogueText.text += input[i];
+            yield return new WaitForSeconds(textDelay);
+        }
+        dialogueFinished = true;
+    }    
 
     public void AdvanceDialogue()
     {
-        PrintDialogue();
+        if(dialogueFinished)
+        {
+            PrintDialogue();
+        }
     }
 
     private void EndDialogue()
