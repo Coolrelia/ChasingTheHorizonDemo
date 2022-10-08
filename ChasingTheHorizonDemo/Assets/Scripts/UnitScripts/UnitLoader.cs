@@ -21,7 +21,7 @@ public class UnitLoader : MonoBehaviour
     public bool attackable = false;
     public Vector2 originalPosition = new Vector2(0, 0);
 
-    [Header("Stats")]
+    [Header("Current Stats")]
     public int unitHP;
     public int unitStr;
     public int unitMag;
@@ -32,20 +32,21 @@ public class UnitLoader : MonoBehaviour
 
     //REFERENCES
     [Header("References")]
-    private CursorController cursor;    
+    private CursorController cursor;
+    private TileMap currentMap;
     public Unit unit;
-    public BehaviorTag behaviorTag;
-    public BattleDialogue battleDialogue;
-    public UnitLoader target;
     public Inventory inventory = null;
     public GameObject actionMenu = null;
-    public Weapon equippedWeapon = null;
-    public List<UnitLoader> enemiesInRange = new List<UnitLoader>();
     public Transform actionMenuSpawn = null;
-    public MapDialogue attackedDialogue = null;
-    public MapDialogue defeatedDialogue = null;
-    public bool below50Quote = false;
 
+    [HideInInspector] public Weapon equippedWeapon = null;
+    [HideInInspector] public List<UnitLoader> enemiesInRange = new List<UnitLoader>();
+    [HideInInspector] public MapDialogue attackedDialogue = null;
+    [HideInInspector] public MapDialogue defeatedDialogue = null;
+    [HideInInspector] public bool below50Quote = false;
+    [HideInInspector] public BehaviorTag behaviorTag;
+    [HideInInspector] public BattleDialogue battleDialogue;
+    [HideInInspector] public UnitLoader target;
     [HideInInspector] public TileMap map;
     [HideInInspector] public SpriteRenderer spriteRenderer = null;
     [HideInInspector] public Animator animator = null;
@@ -54,6 +55,7 @@ public class UnitLoader : MonoBehaviour
     {
         map = FindObjectOfType<TileMap>();
         cursor = FindObjectOfType<CursorController>();
+        currentMap = FindObjectOfType<TileMap>();
         currentHealth = unit.statistics.health;
         currentPath = null;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -143,7 +145,7 @@ public class UnitLoader : MonoBehaviour
         Vector2 currentPosition = new Vector2(transform.localPosition.x, transform.localPosition.y);
         Vector2 enemyPosition = new Vector2(0, 0);
 
-        foreach(UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach(UnitLoader unit in currentMap.enemyUnits)
         {
             enemyPosition = new Vector2(unit.transform.localPosition.x, unit.transform.localPosition.y);
             if (Vector2.Distance(currentPosition, enemyPosition) <= equippedWeapon.range)

@@ -622,14 +622,14 @@ public class TileMap : MonoBehaviour
         {
             return false;
         }
-        foreach(UnitLoader u in TurnManager.instance.allyUnits)
+        foreach(UnitLoader u in allyUnits)
         {
             if(u != selectedUnit && u.transform.localPosition == new Vector3(x, y))
             {
                 return false;
             }
         }
-        foreach(UnitLoader u in TurnManager.instance.enemyUnits)
+        foreach(UnitLoader u in enemyUnits)
         {
             if(u.transform.localPosition == new Vector3(x, y))
             {

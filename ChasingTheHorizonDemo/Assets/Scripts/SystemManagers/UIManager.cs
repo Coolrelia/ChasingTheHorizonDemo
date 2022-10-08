@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
     {
         //AllyUnitUI();
         //EnemyUnitUI();
-        TileUI();
+        //TileUI();
     }
 
 
