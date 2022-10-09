@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 7404744809104434012}
   - component: {fileID: 7404744809104434011}
   - component: {fileID: 7404744809104434013}
+  - component: {fileID: 2089335073063862019}
   m_Layer: 8
   m_Name: YoungEdgar
   m_TagString: Untagged
@@ -214,7 +215,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,17 +276,18 @@ MonoBehaviour:
   unitPrf: 0
   unitAgi: 0
   unit: {fileID: 11400000, guid: 9d670ac7311fe314c83381b72f570d0e, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 7404744809104434011}
-  target: {fileID: 0}
+  inventory1: []
   inventory: {fileID: 7404744808051824599}
   actionMenu: {fileID: 0}
+  actionMenuSpawn: {fileID: 7404744808325184602}
   equippedWeapon: {fileID: 0}
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 7404744808325184602}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 7404744809104434011}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 7404744809104434015}
   animator: {fileID: 7404744809104434013}
@@ -326,3 +328,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &2089335073063862019
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7404744809104434001}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 0.94}
+    newSize: {x: 0.8, y: 0.94}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0

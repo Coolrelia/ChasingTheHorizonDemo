@@ -24,6 +24,7 @@ public class TileMap : MonoBehaviour
 
     public List<UnitLoader> allyUnits = new List<UnitLoader>();
     public List<UnitLoader> enemyUnits = new List<UnitLoader>();
+    public Transform[] allySpawnPoints;
 
     private void Start()
     {
@@ -121,7 +122,7 @@ public class TileMap : MonoBehaviour
 
         foreach(SelectableTile tile in FindObjectsOfType<SelectableTile>())
         {
-            tile.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 0);
+            tile.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
         }
     }
     private void GenerateMapFromFile()
@@ -133,7 +134,6 @@ public class TileMap : MonoBehaviour
             {
                 tiles[x, y] = (int)char.GetNumericValue(mapValues[x]);
             }
-            //mapValues = mapValues.Remove(0, 20);
             y++;
         }   
     }

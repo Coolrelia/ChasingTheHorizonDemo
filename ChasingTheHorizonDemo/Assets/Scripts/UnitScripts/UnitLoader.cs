@@ -20,6 +20,7 @@ public class UnitLoader : MonoBehaviour
     public bool rested = false;
     public bool attackable = false;
     public Vector2 originalPosition = new Vector2(0, 0);
+    public Vector2 startPosition = new Vector2(0, 0);
 
     [Header("Current Stats")]
     public int unitHP;
@@ -35,6 +36,7 @@ public class UnitLoader : MonoBehaviour
     private CursorController cursor;
     private TileMap currentMap;
     public Unit unit;
+    public List<Item> inventory1 = new List<Item>();
     public Inventory inventory = null;
     public GameObject actionMenu = null;
     public Transform actionMenuSpawn = null;

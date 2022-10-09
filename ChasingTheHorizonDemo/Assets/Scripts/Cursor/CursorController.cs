@@ -9,6 +9,8 @@ public class CursorController : MonoBehaviour
 
     private TileMap currentMap = null;
 
+    private UnitLoader selectedUnit;
+
     public Sprite highlight = null;
     public Vector2 currentPosition = new Vector3(0, 0);
     public bool enemyTurn = false;
@@ -37,7 +39,7 @@ public class CursorController : MonoBehaviour
 
     public Animator animator = null;
 
-    private CursorState currentState;
+    public CursorState currentState;
     public CursorState previousState;
 
     private bool cursorMoving = false;
@@ -192,6 +194,31 @@ public class CursorController : MonoBehaviour
                 SetState(new UnitState(this));
             }
         }
+    }
+    public void MoveSelectUnit()
+    {       
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        if(col.Length > 0)
+        {
+            if(selectedUnit)
+            {
+                UnitLoader secondUnit = col[0].GetComponent<UnitLoader>();
+                Vector3 selectedUnitPos = selectedUnit.transform.position;
+                selectedUnit.transform.position = secondUnit.transform.position;
+                selectedUnit.startPosition = transform.position;
+                secondUnit.transform.position = selectedUnitPos;
+                secondUnit.startPosition = transform.position;
+                selectedUnit = null;
+            }
+            else
+            {
+                selectedUnit = col[0].GetComponent<UnitLoader>();
+            }
+        }
+    }
+    public void MoveDeselectUnit()
+    {
+        selectedUnit = null;
     }
     public void DeselectUnit()
     {
