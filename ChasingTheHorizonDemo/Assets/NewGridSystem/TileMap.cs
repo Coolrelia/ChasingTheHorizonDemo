@@ -35,9 +35,9 @@ public class TileMap : MonoBehaviour
         GenerateMapFromFile();
         GenerateMapVisuals();
 
-        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        foreach (UnitLoader unit in FindObjectsOfType<UnitLoader>())
         {
-            if(unit.unit.allyUnit)
+            if (unit.unit.allyUnit)
             {
                 allyUnits.Add(unit);
             }
@@ -134,6 +134,7 @@ public class TileMap : MonoBehaviour
             {
                 tiles[x, y] = (int)char.GetNumericValue(mapValues[x]);
             }
+            mapValues = mapValues.Remove(0, 25);
             y++;
         }   
     }
