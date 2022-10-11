@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using InventorySystem;
 
 //UnitLoader script loads all the data and functions each Unit needs
 //Each unit regardless of affiliation requires this script
@@ -15,14 +14,18 @@ public class UnitLoader : MonoBehaviour
     public int currentHealth = 0;
     public int level = 1;
     public int exp = 0;
-    public bool hasMoved = false;
-    public bool hasAttacked = false;
-    public bool rested = false;
-    public bool attackable = false;
+    public bool pact1Forged = false;
+    public bool pact2Forged = false;
+    public bool criticalMode = false;
+    public int fatigue = 0;
+    [HideInInspector] public bool hasMoved = false;
+    [HideInInspector] public bool hasAttacked = false;
+    [HideInInspector] public bool rested = false;
+    [HideInInspector] public bool attackable = false;
     public Vector2 originalPosition = new Vector2(0, 0);
     public Vector2 startPosition = new Vector2(0, 0);
 
-    [Header("Current Stats")]
+    [Header("Growth Stats")]
     public int unitHP;
     public int unitStr;
     public int unitMag;
@@ -31,17 +34,25 @@ public class UnitLoader : MonoBehaviour
     public int unitPrf;
     public int unitAgi;
 
+    [Header("Buff Stats")]
+    public int hpBuff;
+    public int strBuff;
+    public int magBuff;
+    public int resBuff;
+    public int agiBuff;
+
     //REFERENCES
     [Header("References")]
     private CursorController cursor;
     private TileMap currentMap;
     public Unit unit;
-    public List<Item> inventory1 = new List<Item>();
-    public Inventory inventory = null;
-    public GameObject actionMenu = null;
-    public Transform actionMenuSpawn = null;
+    public Weapon equippedWeapon = null;
+    public List<Item> inventory = new List<Item>();
+    public List<Item> smallConvoy = new List<Item>();
+    public List<Bond> bonds = new List<Bond>();
+    public List<Skill> skills = new List<Skill>();
+    public List<Spell> learnedSpells = new List<Spell>();
 
-    [HideInInspector] public Weapon equippedWeapon = null;
     [HideInInspector] public List<UnitLoader> enemiesInRange = new List<UnitLoader>();
     [HideInInspector] public MapDialogue attackedDialogue = null;
     [HideInInspector] public MapDialogue defeatedDialogue = null;
@@ -88,7 +99,7 @@ public class UnitLoader : MonoBehaviour
     {
         if(!equippedWeapon)
         {
-            foreach(Item item in inventory.inventory)
+            foreach(Item item in inventory)
             {
                 if(item.type == ItemType.Weapon)
                 {
@@ -107,7 +118,7 @@ public class UnitLoader : MonoBehaviour
 
     public void Rest()
     {
-        foreach(UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach(UnitLoader unit in map.enemyUnits)
         {
             if(unit.spriteRenderer.color == Color.red)
             {
@@ -171,6 +182,39 @@ public class UnitLoader : MonoBehaviour
             spriteRenderer.color = Color.red;
         }
     }
+    public List<UnitLoader> ReturnAdjacentUnits()
+    {
+        List<Node> adjacentNodes = new List<Node>();
+        List<UnitLoader> adjacentUnits = new List<UnitLoader>();
+
+        adjacentUnits.Clear();
+        adjacentNodes.Clear();
+
+        Node node1 = map.ReturnNodeAt((int)transform.position.x + 1, (int)transform.position.y);
+        Node node2 = map.ReturnNodeAt((int)transform.position.x - 1, (int)transform.position.y);
+        Node node3 = map.ReturnNodeAt((int)transform.position.x, (int)transform.position.y + 1);
+        Node node4 = map.ReturnNodeAt((int)transform.position.x, (int)transform.position.y - 1);
+        
+        adjacentNodes.Add(node1);
+        adjacentNodes.Add(node2);
+        adjacentNodes.Add(node3);
+        adjacentNodes.Add(node4);
+
+        foreach(Node n in adjacentNodes)
+        {
+            foreach(UnitLoader unit in map.allyUnits)
+            {
+                Vector2 unitPosition = new Vector2((int)unit.transform.position.x, (int)unit.transform.position.y);
+                Vector2 nodePosition = new Vector2(n.x, n.y);
+                if(unitPosition == nodePosition)
+                {
+                    adjacentUnits.Add(unit);
+                }
+            }
+        }
+        return adjacentUnits;
+
+    } // this only returns adjacent allied units
 
     private IEnumerator NodeMovement()
     {
@@ -319,15 +363,7 @@ public class UnitLoader : MonoBehaviour
     }
     public void ActionMenu()
     {
-        actionMenu.transform.position = actionMenuSpawn.position;
-        if(actionMenu.activeSelf == true)
-        {
-            actionMenu.SetActive(false);            
-        }
-        else
-        {
-            actionMenu.SetActive(true);
-        }
+        ActionMenuPlus.instance.Toggle();
     }    
 
     private void OnDestroy()

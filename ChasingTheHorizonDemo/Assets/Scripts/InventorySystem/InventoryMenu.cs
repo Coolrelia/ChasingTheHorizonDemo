@@ -90,9 +90,9 @@ namespace InventorySystem
                         Instantiate(healingEffect, targetPosition, healingEffect.transform.rotation);
 
                         map.selectedUnit.Rest();
-                        cursor.CloseInventory();
-                        ActionMenuManager.instance.gameObject.SetActive(false);
-                        map.selectedUnit.inventory.inventory.Remove(consumable);
+                        ActionMenuPlus.instance.CloseInventory();
+                        //ActionMenuManager.instance.gameObject.SetActive(false);
+                        map.selectedUnit.inventory.Remove(consumable);
                         map.selectedUnit = null;
                         cursor.cursorControls.SwitchCurrentActionMap("MapScene");
                         cursor.SetState(new MapState(cursor));
@@ -105,9 +105,9 @@ namespace InventorySystem
                         Instantiate(healingEffect, targetPosition, healingEffect.transform.rotation);
                         
                         map.selectedUnit.Rest();
-                        cursor.CloseInventory();
-                        ActionMenuManager.instance.gameObject.SetActive(false);
-                        map.selectedUnit.inventory.inventory.Remove(consumable);
+                        ActionMenuPlus.instance.CloseInventory();
+                        //ActionMenuManager.instance.gameObject.SetActive(false);
+                        map.selectedUnit.inventory.Remove(consumable);
                         map.selectedUnit = null;
                         cursor.cursorControls.SwitchCurrentActionMap("MapScene");
                         cursor.SetState(new MapState(cursor));
@@ -175,9 +175,9 @@ namespace InventorySystem
         }
         private void FillSlots()
         {
-            for (int i = 0; i < map.selectedUnit.inventory.inventory.Count; i++)
+            for (int i = 0; i < map.selectedUnit.inventory.Count; i++)
             {
-                inventorySlots[i].item = map.selectedUnit.inventory.inventory[i];
+                inventorySlots[i].item = map.selectedUnit.inventory[i];
                 inventorySlots[i].FillSlot();
             }
         }

@@ -10,7 +10,7 @@ public class EnemyInventory : MonoBehaviour
 
     public void DisplayInventory(UnitLoader unit)
     {
-        int amountOfItems = unit.inventory.inventory.Count;
+        int amountOfItems = unit.inventory.Count;
         for(int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
@@ -18,7 +18,7 @@ public class EnemyInventory : MonoBehaviour
         for(int i = 0; i < amountOfItems; i++)
         {
             transform.GetChild(i).gameObject.SetActive(true);
-            transform.GetChild(i).GetComponent<InventorySlot>().item = unit.inventory.inventory[i];
+            transform.GetChild(i).GetComponent<InventorySlot>().item = unit.inventory[i];
             transform.GetChild(i).GetComponent<InventorySlot>().FillSlot();
         }
     }

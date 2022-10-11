@@ -11,8 +11,8 @@
 
     public override void Cancel()
     {
-        if(ActionMenuManager.instance.inventoryMenu.activeSelf) {
-            cursorController.CloseInventory();
+        if(ActionMenuPlus.instance.inventory.activeSelf) {
+            ActionMenuPlus.instance.CloseInventory();
         }
         else {
             cursorController.UndoMove();

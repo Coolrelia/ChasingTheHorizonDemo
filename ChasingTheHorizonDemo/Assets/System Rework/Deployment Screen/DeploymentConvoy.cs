@@ -44,9 +44,9 @@ public class DeploymentConvoy : MonoBehaviour
 
     public void EquipItem()
     {
-        if(DeploymentArmy.instance.selectedUnit.inventory1.Count < 5)
+        if(DeploymentArmy.instance.selectedUnit.inventory.Count < 5)
         {
-            DeploymentArmy.instance.selectedUnit.inventory1.Add(selectedItem);
+            DeploymentArmy.instance.selectedUnit.inventory.Add(selectedItem);
             saveData.saveObject.smallConvoy.Remove(selectedItem);
             selectedItem = null;
             CreateConvoy();

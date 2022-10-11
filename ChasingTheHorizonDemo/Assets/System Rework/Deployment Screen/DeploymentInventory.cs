@@ -25,10 +25,10 @@ public class DeploymentInventory : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < DeploymentArmy.instance.selectedUnit.inventory1.Count; i++)
+        for (int i = 0; i < DeploymentArmy.instance.selectedUnit.inventory.Count; i++)
         {
             GameObject go = Instantiate(inventorySlot, transform);
-            Item item = DeploymentArmy.instance.selectedUnit.inventory1[i];
+            Item item = DeploymentArmy.instance.selectedUnit.inventory[i];
             go.GetComponent<DeploymentInventorySlot>().LoadItem(item);
         }
     }

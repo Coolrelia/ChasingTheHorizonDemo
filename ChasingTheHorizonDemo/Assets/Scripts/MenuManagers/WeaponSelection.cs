@@ -29,9 +29,9 @@ public class WeaponSelection : MonoBehaviour
 
     private void GetUnitWeapons()
     {
-        for(int i = 0; i < map.selectedUnit.inventory.inventory.Count; i++){
-            if(map.selectedUnit.inventory.inventory[i].type == ItemType.Weapon){
-                unitWeapons.Add(map.selectedUnit.inventory.inventory[i]);
+        for(int i = 0; i < map.selectedUnit.inventory.Count; i++){
+            if(map.selectedUnit.inventory[i].type == ItemType.Weapon){
+                unitWeapons.Add(map.selectedUnit.inventory[i]);
             }
         }
     }

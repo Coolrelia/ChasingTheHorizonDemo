@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DeploymentScreen : MonoBehaviour
 {
@@ -8,12 +9,14 @@ public class DeploymentScreen : MonoBehaviour
 
     public List<UnitLoader> deployedUnits = new List<UnitLoader>();
 
+    [SerializeField] private GameObject convoyButton = null;
     [SerializeField] private GameObject convoyMenu = null;
     [SerializeField] private GameObject deploymentMenu = null;
     [SerializeField] private GameObject mapPositionMenu = null;
     [SerializeField] private GameObject settingsMenu = null;
     [SerializeField] private TileMap map;
     [SerializeField] private SaveTest saveManager;
+    [SerializeField] private GameObject unitsObject = null;
 
     public string activeMenu = "";
     public bool unitsSpawned = false;
@@ -21,6 +24,11 @@ public class DeploymentScreen : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(HighlightButton());
     }
 
     public void OpenConvoy()
@@ -57,7 +65,7 @@ public class DeploymentScreen : MonoBehaviour
         }
     }
     public void OpenSettings()
-    {
+    { 
         settingsMenu.SetActive(true);
     }
     public void Save()
@@ -79,10 +87,27 @@ public class DeploymentScreen : MonoBehaviour
         {
             for (int i = 0; i < saveManager.saveObject.deployedArmy.Count; i++)
             {
-                GameObject go = Instantiate(saveManager.saveObject.deployedArmy[i].gameObject, map.transform);
+                GameObject go = Instantiate(saveManager.saveObject.deployedArmy[i].gameObject, unitsObject.transform);
                 go.transform.position = map.allySpawnPoints[i].position;
             }
         }
         print("starting map");
+        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        {
+            if(unit.unit.allyUnit)
+            {
+                map.allyUnits.Add(unit);
+            }
+        }
+        for (int i = 0; i < saveManager.saveObject.smallConvoy.Count; i++)
+        {
+            map.allyUnits[0].smallConvoy.Add(saveManager.saveObject.smallConvoy[i]);
+        }
+    }
+    private IEnumerator HighlightButton()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(convoyButton.gameObject);
     }
 }

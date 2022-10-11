@@ -220,6 +220,23 @@ public class CursorController : MonoBehaviour
     {
         selectedUnit = null;
     }
+    public void TradeSelectUnit()
+    {
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        if (col.Length <= 0) return;
+        UnitLoader unit = col[0].GetComponent<UnitLoader>();
+        if (!unit.unit.allyUnit) return;
+        TradeMenu.instance.BeginTrade(unit);
+    }
+    public void ConvoySelect()
+    {
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        if (col.Length <= 0) return;
+        UnitLoader unit = col[0].GetComponent<UnitLoader>();
+        if (!unit.unit.allyUnit) return;
+        if (unit.smallConvoy.Count <= 0) return;
+        ConvoyTradeMenu.instance.OpenConvoy(unit);
+    }
     public void DeselectUnit()
     {
         if(currentMap.selectedUnit != null)
@@ -329,10 +346,7 @@ public class CursorController : MonoBehaviour
         SetState(new MapState(this));
         cursorControls.SwitchCurrentActionMap("MapScene");
     }
-    public void CloseInventory()
-    {
-        ActionMenuManager.instance.CloseInventory();
-    }
+    
     public void SelectTarget()
     {
         SoundManager.instance.PlayFX(0);
@@ -374,8 +388,8 @@ public class CursorController : MonoBehaviour
         currentMap.DehighlightTiles();
         cursorControls.SwitchCurrentActionMap("UI");
         SetState(new ActionMenuState(this));
-        currentMap.selectedUnit.actionMenu.transform.position = currentMap.selectedUnit.actionMenuSpawn.position;
-        ActionMenuManager.instance.Highlight();
+        ActionMenuPlus.instance.Toggle();
+        //ActionMenuManager.instance.Highlight();
     }
 
     public void DisplayMenu()

@@ -19,7 +19,7 @@ public class DeploymentInventorySlot : MonoBehaviour
     public void RemoveItem()
     {
         // remove item from the inventory 
-        DeploymentArmy.instance.selectedUnit.inventory1.Remove(item);
+        DeploymentArmy.instance.selectedUnit.inventory.Remove(item);
         // add item to the convoy
         DeploymentConvoy.instance.AddItem(item);
         DeploymentInventory.instance.CreateInventory();

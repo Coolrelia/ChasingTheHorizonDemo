@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 5.5, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 4288517369593911390}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4288517368237473594
 SpriteRenderer:
@@ -82,82 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &4288517368772339992
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4288517368772339991}
-  m_Layer: 8
-  m_Name: ActionMenuSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4288517368772339991
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4288517368772339992}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0.35, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4288517369593911390}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4288517369133091794
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4288517369133091793}
-  - component: {fileID: 4288517369133091792}
-  m_Layer: 8
-  m_Name: Inventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4288517369133091793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4288517369133091794}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4288517369593911390}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4288517369133091792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4288517369133091794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12f0fda1fc8ba134abb29d1c1b650404, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory:
-  - {fileID: 11400000, guid: fd87abcf07db22f4ab3671858696f8c6, type: 2}
-  - {fileID: 11400000, guid: da2f35fa32c9b9c45af066306ab82992, type: 2}
 --- !u!1 &4288517369593911391
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,8 +114,6 @@ Transform:
   m_LocalPosition: {x: 4.5, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4288517368772339991}
-  - {fileID: 4288517369133091793}
   - {fileID: 4288517368237473595}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -263,11 +185,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -275,14 +202,18 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
-  inventory1:
-  - {fileID: 11400000, guid: fd87abcf07db22f4ab3671858696f8c6, type: 2}
-  - {fileID: 11400000, guid: 67028cd00c351eb46a8b2ae91972c430, type: 2}
-  inventory: {fileID: 4288517369133091792}
-  actionMenu: {fileID: 0}
-  actionMenuSpawn: {fileID: 4288517368772339991}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 11400000, guid: fd87abcf07db22f4ab3671858696f8c6, type: 2}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
