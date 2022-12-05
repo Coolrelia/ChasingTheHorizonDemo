@@ -1096,11 +1096,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -1108,18 +1113,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 177340611}
-  target: {fileID: 0}
-  inventory: {fileID: 992934447}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 275078681}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 177340611}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 177340613}
   animator: {fileID: 177340610}
@@ -1475,11 +1487,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -1487,18 +1504,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: a3d7b9b3af39b8247a2bf7bea7313b90, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 0}
-  target: {fileID: 0}
-  inventory: {fileID: 1045897608}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 1773532671}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 0}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 225585091}
   animator: {fileID: 225585088}
@@ -2885,11 +2909,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -2897,18 +2926,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 465964012}
-  target: {fileID: 0}
-  inventory: {fileID: 1025458210}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 1131012815}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 465964012}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 465964009}
   animator: {fileID: 465964010}
@@ -3001,36 +3037,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9af368ba73760347b942cc6ef87fb32, type: 2}
   under50Quote: {fileID: 11400000, guid: 055039030572ac247b70ac52caacd25f, type: 2}
   deathQuote: {fileID: 11400000, guid: cbf55eb6d418e4b4eb6b55dccd17b70f, type: 2}
---- !u!1 &492123075
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 492123076}
-  m_Layer: 0
-  m_Name: BottomFrame
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &492123076
+--- !u!4 &492123076 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5722932922425609304, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5722932922647068572}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492123075}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1135386187}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &521110152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,36 +3413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &681225794
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 681225795}
-  m_Layer: 0
-  m_Name: RightFrame
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &681225795
+--- !u!4 &681225795 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5722932922237751775, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5722932922647068572}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681225794}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1135386187}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697433498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3508,36 +3496,12 @@ Transform:
   m_Father: {fileID: 1826929769}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &720258894
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 720258895}
-  m_Layer: 0
-  m_Name: TopFrame
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &720258895
+--- !u!4 &720258895 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5722932922200783059, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5722932922647068572}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720258894}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1135386187}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &730929054
 GameObject:
   m_ObjectHideFlags: 0
@@ -4676,11 +4640,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -4688,18 +4657,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: a3d7b9b3af39b8247a2bf7bea7313b90, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 0}
-  target: {fileID: 0}
-  inventory: {fileID: 297070398}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 995116934}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 0}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 878704558}
   animator: {fileID: 878704555}
@@ -10778,11 +10754,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -10790,18 +10771,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 1125065826}
-  target: {fileID: 0}
-  inventory: {fileID: 1863303679}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 767356098}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 1125065826}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 1125065828}
   animator: {fileID: 1125065825}
@@ -10982,145 +10970,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1133236244}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1135386184
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1135386187}
-  - component: {fileID: 1135386186}
-  - component: {fileID: 1135386185}
-  - component: {fileID: 1135386188}
-  - component: {fileID: 1135386189}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1135386185
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135386184}
-  m_Enabled: 1
---- !u!20 &1135386186
+--- !u!20 &1135386186 stripped
 Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5722932921516990934, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5722932922647068572}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135386184}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 100
-    height: 100
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 7.080622
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1135386187
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135386184}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5, y: 10.5, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 720258895}
-  - {fileID: 492123076}
-  - {fileID: 1588230084}
-  - {fileID: 681225795}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1135386188
+--- !u!95 &1135386188 stripped
 Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5722932921516990928, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5722932922647068572}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135386184}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1d055e5cbf1260349945f80d1877402a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1135386189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135386184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!1 &1139304534
 GameObject:
   m_ObjectHideFlags: 0
@@ -11983,11 +11844,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -11995,18 +11861,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: 9b7ba59209b8b1149bdf640216601f9a, type: 2}
-  behaviorTag: {fileID: 1336252262}
-  battleDialogue: {fileID: 0}
-  target: {fileID: 0}
-  inventory: {fileID: 867998966}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 1634209037}
   attackedDialogue: {fileID: 11400000, guid: 7f3d74bb2a29b2c4688982df6a626d86, type: 2}
   defeatedDialogue: {fileID: 11400000, guid: d6ceb820b8e4d174da31f43f9670fed7, type: 2}
   below50Quote: 0
+  behaviorTag: {fileID: 1336252262}
+  battleDialogue: {fileID: 0}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 1336252264}
   animator: {fileID: 1336252261}
@@ -17985,36 +17858,12 @@ Transform:
   m_Father: {fileID: 2099694724}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1588230083
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1588230084}
-  m_Layer: 0
-  m_Name: LeftFrame
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1588230084
+--- !u!4 &1588230084 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5722932921332811864, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5722932922647068572}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588230083}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1135386187}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589565368
 GameObject:
   m_ObjectHideFlags: 0
@@ -18067,11 +17916,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -18079,18 +17933,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: 9b7ba59209b8b1149bdf640216601f9a, type: 2}
-  behaviorTag: {fileID: 1589565372}
-  battleDialogue: {fileID: 0}
-  target: {fileID: 0}
-  inventory: {fileID: 1235515054}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 1705932332}
   attackedDialogue: {fileID: 11400000, guid: 7f3d74bb2a29b2c4688982df6a626d86, type: 2}
   defeatedDialogue: {fileID: 11400000, guid: d6ceb820b8e4d174da31f43f9670fed7, type: 2}
   below50Quote: 0
+  behaviorTag: {fileID: 1589565372}
+  battleDialogue: {fileID: 0}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 1589565371}
   animator: {fileID: 1589565373}
@@ -18583,11 +18444,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -18595,18 +18461,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: cc2898325ea080f4ba5ee8e6d5cfa415, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 1625918928}
-  target: {fileID: 0}
-  inventory: {fileID: 697433500}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 181921672}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 1625918928}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 1625918925}
   animator: {fileID: 1625918926}
@@ -24187,11 +24060,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -24199,18 +24077,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: 9d670ac7311fe314c83381b72f570d0e, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 1807665275}
-  target: {fileID: 0}
-  inventory: {fileID: 1776641930}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 1346716325}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 1807665275}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 1807665277}
   animator: {fileID: 1807665274}
@@ -30126,11 +30011,16 @@ MonoBehaviour:
   currentHealth: 0
   level: 1
   exp: 0
+  pact1Forged: 0
+  pact2Forged: 0
+  criticalMode: 0
+  fatigue: 0
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -30138,18 +30028,25 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
+  hpBuff: 0
+  strBuff: 0
+  magBuff: 0
+  resBuff: 0
+  agiBuff: 0
   unit: {fileID: 11400000, guid: cc2898325ea080f4ba5ee8e6d5cfa415, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 1988119474}
-  target: {fileID: 0}
-  inventory: {fileID: 929122843}
-  actionMenu: {fileID: 20749242}
   equippedWeapon: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  smallConvoy: []
+  skills: []
+  learnedSpells: []
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 1659680134}
   attackedDialogue: {fileID: 0}
   defeatedDialogue: {fileID: 0}
   below50Quote: 0
+  behaviorTag: {fileID: 0}
+  battleDialogue: {fileID: 1988119474}
+  target: {fileID: 0}
   map: {fileID: 0}
   spriteRenderer: {fileID: 1988119476}
   animator: {fileID: 1988119473}
@@ -30855,6 +30752,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8baffd2b0a49e0f46ba0651fa0210581, type: 3}
+--- !u!1001 &5722932922647068572
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5722932921516990932, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722932921516990935, guid: 7e538d1933588ff41a0b0ba4de2ec63e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e538d1933588ff41a0b0ba4de2ec63e, type: 3}
 --- !u!1001 &6024655724595231456
 PrefabInstance:
   m_ObjectHideFlags: 0

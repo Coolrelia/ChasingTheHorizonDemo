@@ -36,6 +36,23 @@ public class ActionMenuPlus : MonoBehaviour
         }
     }
 
+    public void Unlock()
+    {
+        // check if there is a chest adjacent to the selected unit
+        // if there's a chest, open the chest and add the item to the selected units inventory, or convoy if full
+
+        List<TileType> adjacentTiles = map.selectedUnit.ReturnAdjacentTiles();
+        TileType chestTile = null;
+
+        foreach(TileType tile in adjacentTiles)
+        {
+            if (tile.name != "Chest") return;
+            chestTile = tile;
+        }
+        cursor.cursorControls.SwitchCurrentActionMap("MapScene");
+        cursor.SetState(new UnlockState(cursor));
+    }
+
     public void Trade()
     {
         // this function only works if the selected unit is adjacent to another allied unit

@@ -17,6 +17,7 @@ MonoBehaviour:
   unitName: Roland
   allyUnit: 1
   diagonal: 0
+  unitType: 0
   statistics:
     health: 20
     strength: 5
@@ -26,6 +27,14 @@ MonoBehaviour:
     proficiency: 0
     motivation: 0
     agility: 0
-    movement: 3
-  level: 1
-  exp: 0
+    movement: 5
+  growthRates:
+    healthGrowth: 0
+    strengthGrowth: 0
+    magicGrowth: 0
+    defenseGrowth: 0
+    resistanceGrowth: 0
+    proficiencyGrowth: 0
+    agilityGrowth: 0
+  spellList1: []
+  spellList2: []

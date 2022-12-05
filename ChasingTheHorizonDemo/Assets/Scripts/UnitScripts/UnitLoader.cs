@@ -40,6 +40,8 @@ public class UnitLoader : MonoBehaviour
     public int magBuff;
     public int resBuff;
     public int agiBuff;
+    public int movBuff;
+    public int critBuff;
 
     //REFERENCES
     [Header("References")]
@@ -215,6 +217,19 @@ public class UnitLoader : MonoBehaviour
         return adjacentUnits;
 
     } // this only returns adjacent allied units
+    public List<TileType> ReturnAdjacentTiles()
+    {
+        List<TileType> adjacentTiles = new List<TileType>();
+
+        adjacentTiles.Clear();
+
+        TileType tile1 = map.ReturnTileAt((int)transform.position.x + 1, (int)transform.position.y);
+        TileType tile2 = map.ReturnTileAt((int)transform.position.x + 1, (int)transform.position.y);
+        TileType tile3 = map.ReturnTileAt((int)transform.position.x + 1, (int)transform.position.y);
+        TileType tile4 = map.ReturnTileAt((int)transform.position.x + 1, (int)transform.position.y);
+
+        return adjacentTiles;
+    }
 
     private IEnumerator NodeMovement()
     {

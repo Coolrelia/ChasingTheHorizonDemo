@@ -5,7 +5,7 @@ public enum ItemType
 {
     Consumable,
     Weapon,
-    Other,
+    Key,
 }
 
 [CreateAssetMenu(fileName = "Item", menuName = "Items/Item")]
@@ -15,5 +15,5 @@ public class Item : ScriptableObject
     public string itemName = null;
     public Sprite itemIcon = null;
     public string itemDescription = null;
-    public ItemType type = ItemType.Other;
+    public ItemType type = ItemType.Consumable;
 }

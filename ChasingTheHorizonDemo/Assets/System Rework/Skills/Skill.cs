@@ -9,7 +9,7 @@ public class Skill : MonoBehaviour
     public string skillName;
     public SkillType skillType;
 
-    public void SkillEffect()
+    public virtual void SkillEffect()
     {
 
     }

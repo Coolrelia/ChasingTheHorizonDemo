@@ -115,7 +115,7 @@ public class CursorController : MonoBehaviour
             yield break;
         }
         SoundManager.instance.PlayFX(2);
-        //MoveCamera();
+        MoveCamera();
 
         while((Vector2)transform.localPosition != currentPosition)
         {
@@ -236,6 +236,36 @@ public class CursorController : MonoBehaviour
         if (!unit.unit.allyUnit) return;
         if (unit.smallConvoy.Count <= 0) return;
         ConvoyTradeMenu.instance.OpenConvoy(unit);
+    }
+    public void Unlock()
+    {
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        if (col.Length <= 0) return;
+        SelectableTile tile = col[0].GetComponent<SelectableTile>();
+        TileType chestTile = currentMap.ReturnTileAt(tile.tileX, tile.tileY);
+
+        foreach(Item item in currentMap.selectedUnit.inventory)
+        {
+            if (item.type != ItemType.Key) return;
+        }
+
+        if(chestTile.isChest && chestTile.storedItem)
+        {
+            // add the item to the selected units inventory
+            Item chestItem = chestTile.storedItem;
+            if(currentMap.selectedUnit.inventory.Count < 5)
+            {
+                currentMap.selectedUnit.inventory.Add(chestItem);
+            }
+            else if(currentMap.selectedUnit.inventory.Count >= 5)
+            {
+                AddToConvoy(chestItem);
+            }
+            // close the action menu and end the units turn
+            chestTile.storedItem = null;
+            ActionMenuPlus.instance.Wait();
+        }
+        // if the selected tile is a chest, send the item in the chest to the selected units inventory
     }
     public void DeselectUnit()
     {
@@ -392,6 +422,18 @@ public class CursorController : MonoBehaviour
         //ActionMenuManager.instance.Highlight();
     }
 
+
+    public void AddToConvoy(Item item)
+    {
+        foreach(UnitLoader unit in currentMap.allyUnits)
+        {
+            if(unit.smallConvoy.Count > 0)
+            {
+                unit.smallConvoy.Add(item);
+                return;
+            }
+        }
+    }
     public void DisplayMenu()
     {
         Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
