@@ -128,6 +128,25 @@ public struct Growthrates
     }
 }
 
+[System.Serializable]
+public struct WeaponRanks
+{
+    public int swordRank;
+    public int polearmRank;
+    public int axeRank;
+    public int daggerRank;
+    public int rangedRank;
+
+    public WeaponRanks(int sRank = 0, int pRank = 0, int aRank = 0, int dRank = 0, int rRank = 0)
+    {
+        swordRank = sRank;
+        polearmRank = pRank;
+        axeRank = aRank;
+        daggerRank = dRank;
+        rangedRank = rRank;
+    }
+}
+
     
     
     
