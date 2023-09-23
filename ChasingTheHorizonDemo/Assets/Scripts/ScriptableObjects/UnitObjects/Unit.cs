@@ -15,4 +15,10 @@ public class Unit : ScriptableObject
     //Put the statistics
     public Statistics statistics;
     public Growthrates growthRates;
+
+    // Skill List
+    // Skill Level Up List
+    // Spell List
+    // Spell Level Up List
+    // Bonds List
 }

@@ -133,7 +133,7 @@ public class TileMap : MonoBehaviour
             {
                 tiles[x, y] = (int)char.GetNumericValue(mapValues[x]);
             }
-            //mapValues = mapValues.Remove(0, 20);
+            mapValues = mapValues.Remove(0, 20);
             y++;
         }   
     }

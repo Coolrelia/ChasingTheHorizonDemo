@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca1c4524ab4cc6408d6ad905a83b55c, type: 3}
+  m_Name: Persecution Complex
+  m_EditorClassIdentifier: 
+  effects: []
+  skillCondition:
+  - {fileID: 11400000, guid: c726040cb4e5d5f4d8d82d063cc1a369, type: 2}

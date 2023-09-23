@@ -181,6 +181,7 @@ public class CursorController : MonoBehaviour
         Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
         if(col.Length > 0)
         {
+            print("test");
             UnitLoader unit = col[0].GetComponent<UnitLoader>();
             if(unit.unit.allyUnit && unit.rested == false)
             {
