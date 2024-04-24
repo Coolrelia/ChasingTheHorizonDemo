@@ -14,6 +14,8 @@ public class WeaponSelection : MonoBehaviour
 
     private void OnEnable()
     {
+        cursor = FindObjectOfType<CursorController>();
+        map = FindObjectOfType<TileMap>();
         Invoke("GetUnitWeapons", 0.17f);
         Invoke("FillSlots", 0.18f);
         StartCoroutine(HighlightButton());

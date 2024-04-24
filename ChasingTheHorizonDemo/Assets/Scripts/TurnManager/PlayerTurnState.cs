@@ -26,7 +26,7 @@ public class PlayerTurnState : TurnState
             EventManager.instance.ReloadEvent();
             eventPlayed = true;
         }
-        yield return new WaitUntil(() => MapDialogueManager.instance.screenDim.gameObject.activeSelf == false);
+        //yield return new WaitUntil(() => MapDialogueManager.instance.screenDim.gameObject.activeSelf == false);
 
         //Resets Camera Position if an event did not occur        
         if(!eventPlayed)

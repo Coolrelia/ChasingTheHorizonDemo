@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using InventorySystem;
 
 //UnitLoader script loads all the data and functions each Unit needs
@@ -8,20 +9,13 @@ using InventorySystem;
 //I think everything else in here is fairly self explanatory
 public class UnitLoader : MonoBehaviour
 {
-    public List<Node> currentPath = new List<Node>();
-
-    //VARIABLES
-    [Header("Varibles")]
+    private CursorController cursor;
+    public Unit unit;
+    
+    [Header("Stats")]
     public int currentHealth = 0;
     public int level = 1;
     public int exp = 0;
-    public bool hasMoved = false;
-    public bool hasAttacked = false;
-    public bool rested = false;
-    public bool attackable = false;
-    public Vector2 originalPosition = new Vector2(0, 0);
-
-    [Header("Stats")]
     public int unitHP;
     public int unitStr;
     public int unitMag;
@@ -30,21 +24,25 @@ public class UnitLoader : MonoBehaviour
     public int unitPrf;
     public int unitAgi;
 
-    //REFERENCES
-    [Header("References")]
-    private CursorController cursor;    
-    public Unit unit;
-    public BehaviorTag behaviorTag;
-    public BattleDialogue battleDialogue;
-    public UnitLoader target;
-    public Inventory inventory = null;
-    public GameObject actionMenu = null;
+    [Header("Unit Variables")]
+    public InventoryObj inventory = null;
     public Weapon equippedWeapon = null;
-    public List<UnitLoader> enemiesInRange = new List<UnitLoader>();
+    public List<Spell> activeSpells = new List<Spell>();
+    public Spell equippedSpell = null;
+
+    [Header("Map Varibles")]
+    public bool hasMoved = false;
+    public bool hasAttacked = false;
+    public bool rested = false;
+    public bool attackable = false;
+    public Vector2 originalPosition = new Vector2(0, 0);
+
+    [Header("Map References")]
+    public UnitLoader target;
+    public GameObject actionMenu = null;
     public Transform actionMenuSpawn = null;
-    public MapDialogue attackedDialogue = null;
-    public MapDialogue defeatedDialogue = null;
-    public bool below50Quote = false;
+    public List<UnitLoader> enemiesInRange = new List<UnitLoader>();
+    public List<Node> currentPath = new List<Node>();
 
     [HideInInspector] public TileMap map;
     [HideInInspector] public SpriteRenderer spriteRenderer = null;
@@ -59,6 +57,23 @@ public class UnitLoader : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = unit.sprite;
         EquipWeapon();
+        CheckBondList();
+        FillActiveSpellList();
+    }
+
+    private void FillActiveSpellList()
+    {
+        if (unit.spellList != null)
+        {
+            foreach(var item in unit.spellList.spellList)
+            {
+                if(item.Key <= level)
+                {
+                    Spell spell = item.Value;
+                    if(!activeSpells.Contains(spell)) activeSpells.Add(spell);                    
+                }
+            }
+        }
     }
 
     public BattleStatistics CombatStatistics()
@@ -68,13 +83,14 @@ public class UnitLoader : MonoBehaviour
         BattleStatistics stats = new BattleStatistics();
 
         //Just use the same calculations here but make them apart of the struct
+
         stats.attack = unit.statistics.strength + equippedWeapon.might;
         stats.attackSpeed = unit.statistics.agility - ((unit.statistics.strength - equippedWeapon.weight) / 4);
+        stats.hit = equippedWeapon.hit + (unit.statistics.proficiency / 2) + (unit.statistics.motivation / 4);
+        stats.crit = equippedWeapon.crit + (unit.statistics.proficiency / 2) + (unit.statistics.motivation / 5);
         stats.protection = unit.statistics.defense; //plus any shield
         stats.resilience = unit.statistics.resistance; //plus any shield
-        stats.hit = equippedWeapon.hit + (unit.statistics.proficiency / 2) + (unit.statistics.motivation / 4);
         stats.avoid = stats.attackSpeed + unit.statistics.motivation / 5;
-        stats.crit = equippedWeapon.crit + (unit.statistics.proficiency / 2) + (unit.statistics.motivation / 5);
         stats.vigilance = (unit.statistics.proficiency / 3) + (unit.statistics.motivation / 5);
         
         return stats;
@@ -103,7 +119,7 @@ public class UnitLoader : MonoBehaviour
 
     public void Rest()
     {
-        foreach(UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach(UnitLoader unit in map.enemyUnits)
         {
             if(unit.spriteRenderer.color == Color.red)
             {
@@ -143,17 +159,23 @@ public class UnitLoader : MonoBehaviour
         Vector2 currentPosition = new Vector2(transform.localPosition.x, transform.localPosition.y);
         Vector2 enemyPosition = new Vector2(0, 0);
 
-        foreach(UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach(UnitLoader unit in map.enemyUnits)
         {
             enemyPosition = new Vector2(unit.transform.localPosition.x, unit.transform.localPosition.y);
             if (Vector2.Distance(currentPosition, enemyPosition) <= equippedWeapon.range)
             {
-                unit.AttackableHighlight();
                 if (!enemiesInRange.Contains(unit))
                 {
                     enemiesInRange.Add(unit);
                 }
             }
+        }
+    }
+    public void HighlightEnemies()
+    {
+        foreach(UnitLoader unit in enemiesInRange)
+        {
+            unit.AttackableHighlight();
         }
     }
     private void AttackableHighlight()
@@ -269,6 +291,14 @@ public class UnitLoader : MonoBehaviour
         {
             unitAgi++;
         }
+    }
+
+    private void CheckBondList()
+    {
+        // get bond list
+        List<Unit> bonds = new List<Unit>(unit.bondList.bondList.Keys);
+        // check if any units within 3 tiles are on this units bond list
+        // apply buffs according to their bond value
     }
 
     public void Death()

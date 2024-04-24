@@ -27,5 +27,20 @@ MonoBehaviour:
     motivation: 0
     agility: 0
     movement: 3
-  level: 1
-  exp: 0
+  growthRates:
+    healthGrowth: 0
+    strengthGrowth: 0
+    magicGrowth: 0
+    defenseGrowth: 0
+    resistanceGrowth: 0
+    proficiencyGrowth: 0
+    agilityGrowth: 0
+  weaponRanks:
+    swordRank: 0
+    polearmRank: 0
+    axeRank: 0
+    daggerRank: 0
+    rangedRank: 0
+  bondList: {fileID: 11400000, guid: b91dacab498dd264288539c581198933, type: 2}
+  skillList: {fileID: 0}
+  spellList: {fileID: 0}

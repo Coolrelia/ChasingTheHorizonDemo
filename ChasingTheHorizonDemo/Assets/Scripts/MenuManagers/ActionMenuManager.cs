@@ -16,6 +16,7 @@ public class ActionMenuManager : MonoBehaviour
     [SerializeField] private Button actionMenuButton = null;
 
     public GameObject inventoryMenu = null;
+    public GameObject spellMenu = null;
     public GameObject combatPreview = null;
     public GameObject weaponSelection = null;
 
@@ -25,6 +26,8 @@ public class ActionMenuManager : MonoBehaviour
     {
         instance = this;
         rectTransform = GetComponent<RectTransform>();
+        map = FindObjectOfType<TileMap>();
+        cursor = FindObjectOfType<CursorController>();
     }
 
     private void OnEnable()
@@ -34,6 +37,7 @@ public class ActionMenuManager : MonoBehaviour
     private void OnDisable()
     {
         inventoryMenu.SetActive(false);
+        spellMenu.SetActive(false);
     }
 
     public void Attack()
@@ -41,13 +45,27 @@ public class ActionMenuManager : MonoBehaviour
         if(map.selectedUnit.enemiesInRange.Count >= 1)
         {
             cursor.SetState(new ActionMenuState(cursor));
-            rectTransform.anchoredPosition = new Vector2(-1400, 40);
+            HideActionMenu();
             EventSystem.current.SetSelectedGameObject(null);
             cursor.cursorControls.SwitchCurrentActionMap("MapScene");
             cursor.SetState(new AttackState(cursor));
+            map.selectedUnit.HighlightEnemies();
             map.DehighlightTiles();
             map.attackableTiles = map.GenerateRange((int)map.selectedUnit.transform.localPosition.x, (int)map.selectedUnit.transform.localPosition.y, map.selectedUnit.equippedWeapon.range, map.selectedUnit, false);            
             map.HighlightTiles();
+        }
+    }
+    public void Spells()
+    {
+        if (map.selectedUnit.activeSpells.Count == 0) return;
+
+        if(spellMenu.activeSelf == false)
+        {
+            spellMenu.SetActive(true);
+        }
+        else
+        {
+            spellMenu.SetActive(false);
         }
     }
     public void Items()
@@ -71,9 +89,14 @@ public class ActionMenuManager : MonoBehaviour
         cursor.SetState(new MapState(cursor));
     }
 
+    public void HideActionMenu()
+    {
+        rectTransform.anchoredPosition = new Vector2(-1400, 40);
+    }
     public void CloseInventory()
     {
         inventoryMenu.SetActive(false);
+        spellMenu.SetActive(false);
         StartCoroutine(HighlightButton());
     }
     public void Highlight()

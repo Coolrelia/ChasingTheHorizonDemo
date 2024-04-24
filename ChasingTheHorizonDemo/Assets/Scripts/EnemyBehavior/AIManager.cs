@@ -40,7 +40,7 @@ public class AIManager : MonoBehaviour
     public void StartAI()
     {
         fastMode = false;
-        StartCoroutine(BehaviorSystem());
+        //StartCoroutine(BehaviorSystem());
     }
 
     public void FastAI(InputAction.CallbackContext context)
@@ -64,6 +64,7 @@ public class AIManager : MonoBehaviour
         }
     }
 
+    /*
     private IEnumerator BehaviorSystem()
     {
         cursor.enemyTurn = true;
@@ -148,6 +149,7 @@ public class AIManager : MonoBehaviour
         yield return null;
         TurnManager.instance.SetState(new PlayerTurnState(TurnManager.instance));
     }
+    */
 
     private void Blitz(UnitLoader currentEnemy)
     {
@@ -245,6 +247,8 @@ public class AIManager : MonoBehaviour
         }
     }
 
+
+    /*
     public void SetEnemyOrder()
     {
         int i = 0;
@@ -255,7 +259,8 @@ public class AIManager : MonoBehaviour
         }
         enemyOrder.Sort((x, y) => x.behaviorTag.order.CompareTo(y.behaviorTag.order));
     }
-    
+    */
+
     private void GetWalkableTiles()
     {
         currentMap.DehighlightTiles();

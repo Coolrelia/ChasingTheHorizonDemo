@@ -7,7 +7,7 @@
     public override void Confirm()
     {
         cursorController.MoveUnit();
-        cursorController.AttackMove();
+        //cursorController.AttackMove();
     }
 
     public override void Cancel()

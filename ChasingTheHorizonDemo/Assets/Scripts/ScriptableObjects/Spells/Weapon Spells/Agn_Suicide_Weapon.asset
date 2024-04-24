@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2abe4e95c9d2594e8aeb930167e9b2f, type: 3}
+  m_Name: Agn_Suicide_Weapon
+  m_EditorClassIdentifier: 
+  itemName: Agn
+  itemIcon: {fileID: 0}
+  itemDescription: 
+  type: 2
+  might: 10
+  hit: 99
+  crit: 30
+  range: 2
+  weight: 0
+  magical: 1
+  animation: {fileID: 1087997730662671387, guid: 74d7415c57ee55f42b3a5caf4ade90bd,
+    type: 3}
+  animationLength: {fileID: 7400000, guid: 9c8436b2ee9d07c4b827e74c1d25a3f0, type: 2}

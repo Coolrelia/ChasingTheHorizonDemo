@@ -16,6 +16,5 @@ public class Unit : ScriptableObject
     public Growthrates growthRates; // Growths
     public WeaponRanks weaponRanks; // Weapon Ranks
     public Unit_BondList bondList; // Bonds
-    public Unit_SkillList skillList; // Skills
     public Unit_SpellList spellList; // Spells
 }

@@ -23,6 +23,7 @@ public class CombatPreview : MonoBehaviour
 
     private void OnEnable()
     {
+        map = FindObjectOfType<TileMap>();
         Invoke("MenuBlorp", 0.1f);
         Invoke("FillPreview", 0.17f);
     }
@@ -44,7 +45,7 @@ public class CombatPreview : MonoBehaviour
     {
         attackerPortrait.sprite = map.selectedUnit.unit.portrait;
         attackerHP.text = map.selectedUnit.currentHealth.ToString();
-        attackerDamage.text = CombatManager.instance.Hit(map.selectedUnit, map.selectedUnit.target).ToString();
+        attackerDamage.text = HitPreview(map.selectedUnit, map.selectedUnit.target).ToString();
         attackerHit.text = (map.selectedUnit.CombatStatistics().hit - map.selectedUnit.target.CombatStatistics().avoid).ToString();
         attackerCrit.text = map.selectedUnit.CombatStatistics().crit.ToString();
 
@@ -54,7 +55,7 @@ public class CombatPreview : MonoBehaviour
         if(Vector2.Distance(map.selectedUnit.transform.localPosition, map.selectedUnit.target.transform.localPosition) > map.selectedUnit.target.equippedWeapon.range)
             defenderDamage.text = "0";
         else
-            defenderDamage.text = CombatManager.instance.Hit(map.selectedUnit.target, map.selectedUnit).ToString();
+            defenderDamage.text = HitPreview(map.selectedUnit.target, map.selectedUnit).ToString();
 
         defenderHit.text = (map.selectedUnit.target.CombatStatistics().hit - map.selectedUnit.CombatStatistics().avoid).ToString();
         defenderCrit.text = map.selectedUnit.target.CombatStatistics().crit.ToString();
@@ -77,5 +78,10 @@ public class CombatPreview : MonoBehaviour
     private void MenuBlorp()
     {
         SoundManager.instance.PlayFX(11);
+    }
+
+    private int HitPreview(UnitLoader attacker, UnitLoader defender)
+    {
+        return attacker.CombatStatistics().attack - defender.CombatStatistics().protection;
     }
 }

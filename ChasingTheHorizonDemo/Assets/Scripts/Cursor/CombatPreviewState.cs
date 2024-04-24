@@ -6,7 +6,7 @@
 
     public override void Confirm()
     {
-
+        cursorController.SpellAttack();
     }
 
     public override void Cancel()

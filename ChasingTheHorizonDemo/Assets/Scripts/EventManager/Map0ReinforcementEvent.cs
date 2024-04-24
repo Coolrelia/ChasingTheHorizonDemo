@@ -14,7 +14,7 @@ public class Map0ReinforcementEvent : Event
         {
             TurnManager.instance.enemyUnits.Add(reinforcementUnits[i]);
         }
-        AIManager.instance.SetEnemyOrder();
+        //AIManager.instance.SetEnemyOrder();
         finished = true;
     }
 }

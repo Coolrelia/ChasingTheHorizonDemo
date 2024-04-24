@@ -178,20 +178,17 @@ public class CursorController : MonoBehaviour
 
     public void SelectUnit()
     {
-        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-        if(col.Length > 0)
+        Collider2D col = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("MapLayer"));
+        if (col == null) return;
+        UnitLoader unit = col.GetComponent<UnitLoader>();
+        if (unit.unit.allyUnit && unit.rested == false)
         {
-            print("test");
-            UnitLoader unit = col[0].GetComponent<UnitLoader>();
-            if(unit.unit.allyUnit && unit.rested == false)
-            {
-                animator.SetTrigger("Rotate");
-                enemyInventory.SetActive(false);
-                //SoundManager.instance.PlayFX(0);
-                currentMap.selectedUnit = unit;
-                unit.Selected();
-                SetState(new UnitState(this));
-            }
+            animator.SetTrigger("Rotate");
+            enemyInventory.SetActive(false);
+            //SoundManager.instance.PlayFX(0);
+            currentMap.selectedUnit = unit;
+            unit.Selected();
+            SetState(new UnitState(this));
         }
     }
     public void DeselectUnit()
@@ -211,20 +208,18 @@ public class CursorController : MonoBehaviour
     }
     public void SelectEnemy()
     {
-        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-        if (col.Length > 0)
+        Collider2D col = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("MapLayer"));
+        if (col == null) return;
+        UnitLoader unit = col.GetComponent<UnitLoader>();
+        if (!unit.unit.allyUnit)
         {
-            UnitLoader unit = col[0].GetComponent<UnitLoader>();
-            if (!unit.unit.allyUnit)
-            {
-                //SoundManager.instance.PlayFX(0);
-                currentMap.DehighlightTiles();
-                currentMap.walkableTiles = currentMap.GenerateWalkableRange((int)unit.transform.localPosition.x, (int)unit.transform.localPosition.y, unit.unit.statistics.movement, unit);
-                currentMap.HighlightTiles();
-                unit.spriteRenderer.color = Color.red;
-                enemyInventory.SetActive(true);
-                enemyInventory.GetComponent<EnemyInventory>().DisplayInventory(unit);
-            }
+            //SoundManager.instance.PlayFX(0);
+            currentMap.DehighlightTiles();
+            currentMap.walkableTiles = currentMap.GenerateWalkableRange((int)unit.transform.localPosition.x, (int)unit.transform.localPosition.y, unit.unit.statistics.movement, unit);
+            currentMap.HighlightTiles();
+            unit.spriteRenderer.color = Color.red;
+            enemyInventory.SetActive(true);
+            enemyInventory.GetComponent<EnemyInventory>().DisplayInventory(unit);
         }
     }
     public void ResetTiles()
@@ -241,11 +236,48 @@ public class CursorController : MonoBehaviour
     }
     public void MoveUnit()
     {
-        foreach(Node n in currentMap.walkableTiles)
+        Collider2D col = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("TileLayer"));
+        if (col == null) return;
+        SelectableTile tile = col.GetComponent<SelectableTile>();
+
+        if(currentMap.CanTraverse(tile.tileX, tile.tileY))
         {
-            if(new Vector3(currentPosition.x, currentPosition.y) == new Vector3(n.x, n.y) && currentMap.CanTraverse(n.x, n.y))
-            {                
-                if(currentMap.selectedUnit.hasMoved == false)
+            if (currentMap.selectedUnit.hasMoved == false)
+            {
+                SoundManager.instance.PlayFX(0);
+                currentMap.selectedUnit.originalPosition = currentMap.selectedUnit.transform.localPosition;
+                currentMap.GeneratePathTo(tile.tileX, tile.tileY, currentMap.selectedUnit);
+                currentMap.selectedUnit.FollowPath();                
+            }
+        }               
+    }
+    public void AttackMove()
+    {
+        /*
+        if (transform.localPosition == currentMap.selectedUnit.transform.localPosition) { return; }
+
+        Vector3 currentEnemy = new Vector3(0, 0);
+        foreach(UnitLoader unit in currentMap.enemyUnits)
+        {
+            if(transform.localPosition == unit.transform.localPosition && !unit.unit.allyUnit)
+            {
+                if(Vector2.Distance(currentMap.selectedUnit.transform.localPosition, unit.transform.localPosition) <= currentMap.selectedUnit.unit.statistics.movement + currentMap.selectedUnit.equippedWeapon.range)
+                {
+                    currentEnemy = unit.transform.localPosition;
+                }
+            }
+        }
+        */
+
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        UnitLoader currentEnemy;
+        if (col.Length > 0)
+        {
+            currentEnemy = col[0].GetComponent<UnitLoader>();
+            
+            foreach (Node n in currentMap.walkableTiles)
+            {
+                if (Vector2.Distance(new Vector2(n.x, n.y), currentEnemy.transform.position) == currentMap.selectedUnit.equippedWeapon.range && currentMap.CanTraverse(n.x, n.y))
                 {
                     SoundManager.instance.PlayFX(0);
                     currentMap.selectedUnit.originalPosition = currentMap.selectedUnit.transform.localPosition;
@@ -256,39 +288,11 @@ public class CursorController : MonoBehaviour
             }
         }
     }
-    public void AttackMove()
-    {
-        if(transform.localPosition == currentMap.selectedUnit.transform.localPosition) { return; }
-
-        Vector3 currentEnemy = new Vector3(0, 0);
-        foreach(UnitLoader unit in TurnManager.instance.enemyUnits)
-        {
-            if(transform.localPosition == unit.transform.localPosition && !unit.unit.allyUnit)
-            {
-                if(Vector2.Distance(currentMap.selectedUnit.transform.localPosition, unit.transform.localPosition) <= currentMap.selectedUnit.unit.statistics.movement + currentMap.selectedUnit.equippedWeapon.range)
-                {
-                    currentEnemy = unit.transform.localPosition;
-                }
-            }
-        }
-
-        foreach (Node n in currentMap.walkableTiles)
-        {
-            if(Vector2.Distance(new Vector2(n.x, n.y), currentEnemy) == currentMap.selectedUnit.equippedWeapon.range && currentMap.CanTraverse(n.x, n.y))
-            {
-                SoundManager.instance.PlayFX(0);
-                currentMap.selectedUnit.originalPosition = currentMap.selectedUnit.transform.localPosition;
-                currentMap.GeneratePathTo(n.x, n.y, currentMap.selectedUnit);
-                currentMap.selectedUnit.FollowPath();
-                break;
-            }
-        }
-    }
 
     public void UndoMove()
     {
         SoundManager.instance.PlayFX(1);
-        foreach (UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach (UnitLoader unit in currentMap.enemyUnits)
         {
             unit.spriteRenderer.color = Color.white;
         }
@@ -310,7 +314,7 @@ public class CursorController : MonoBehaviour
     public void SelectTarget()
     {
         SoundManager.instance.PlayFX(0);
-        foreach (UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach (UnitLoader unit in currentMap.enemyUnits)
         {
             if(transform.localPosition == unit.transform.localPosition && currentMap.selectedUnit.enemiesInRange.Contains(unit) && 
                 Vector2.Distance(currentMap.selectedUnit.transform.localPosition, unit.transform.localPosition) <= currentMap.selectedUnit.equippedWeapon.range)
@@ -335,6 +339,7 @@ public class CursorController : MonoBehaviour
     public void AttackTarget()
     {
         currentMap.DehighlightTiles();
+        // Engage Attack used the selected units combat conductor script
         CombatManager.instance.EngageAttack(currentMap.selectedUnit, currentMap.selectedUnit.target);
         currentMap.selectedUnit.target.spriteRenderer.color = Color.white;
         currentMap.selectedUnit = null;
@@ -345,11 +350,73 @@ public class CursorController : MonoBehaviour
     public void UndoAttack()
     {
         SoundManager.instance.PlayFX(1);
+        foreach (UnitLoader unit in currentMap.enemyUnits)
+        {
+            unit.spriteRenderer.color = Color.white;
+        }
         currentMap.DehighlightTiles();
         cursorControls.SwitchCurrentActionMap("UI");
         SetState(new ActionMenuState(this));
         currentMap.selectedUnit.actionMenu.transform.position = currentMap.selectedUnit.actionMenuSpawn.position;
         ActionMenuManager.instance.Highlight();
+    }
+    public void UseSpell()
+    {
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        UnitLoader unit = null;
+        SelectableTile tile = null;
+        foreach(Collider2D go in col)
+        {
+            if (go.GetComponent<UnitLoader>())
+            {
+                unit = go.GetComponent<UnitLoader>();
+            }
+            if (go.GetComponent<SelectableTile>())
+            {
+                tile = go.GetComponent<SelectableTile>();
+            }
+        }
+
+        switch (currentMap.selectedUnit.equippedSpell.spellType)
+        {
+            case Spell.SpellType.Damage:
+                SoundManager.instance.PlayFX(0);
+                if (unit.unit.allyUnit) return;
+                currentMap.selectedUnit.target = unit;
+                ActionMenuManager.instance.combatPreview.SetActive(true);
+                cursorControls.SwitchCurrentActionMap("UI");
+                SetState(new CombatPreviewState(this));
+                break;
+
+            case Spell.SpellType.Tile:
+                SoundManager.instance.PlayFX(0);
+                if (tile == null) return;
+
+                break;
+        }
+    }
+    public void SpellAttack()
+    {
+        if (currentMap.selectedUnit.equippedSpell == null) return;
+
+        // the spell cost should be subtracted from the selected unit here
+        currentMap.selectedUnit.currentHealth -= currentMap.selectedUnit.equippedSpell.hpCost;
+        if(currentMap.selectedUnit.currentHealth <= 0)
+        {
+            DamageSpell dSpell = (DamageSpell)currentMap.selectedUnit.equippedSpell;
+            currentMap.selectedUnit.equippedWeapon = dSpell.spellAsWeapon;
+        }
+
+        // if the spell cost would kill the selected unit, perform the suicide cast action before killing unit
+
+        currentMap.DehighlightTiles();
+        CombatManager.instance.EngageAttack(currentMap.selectedUnit, currentMap.selectedUnit.target);
+        currentMap.selectedUnit.target.spriteRenderer.color = Color.white;
+        currentMap.selectedUnit.equippedSpell = null;
+        currentMap.selectedUnit = null;
+        ActionMenuManager.instance.combatPreview.SetActive(false);
+        ActionMenuManager.instance.weaponSelection.SetActive(false);
+        ActionMenuManager.instance.gameObject.SetActive(false);
     }
 
     public void DisplayMenu()

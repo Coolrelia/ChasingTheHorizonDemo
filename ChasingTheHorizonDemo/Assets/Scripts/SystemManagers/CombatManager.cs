@@ -59,12 +59,6 @@ public class CombatManager : MonoBehaviour
         cursor.cursorControls.currentActionMap.Disable();
         cursor.animator.SetBool("Invisible", true);
 
-        //Check if defender has dialogue for when it's attacked
-        if(defender.attackedDialogue != null){
-            MapDialogueManager.instance.WriteSingle(defender.attackedDialogue);
-            yield return new WaitForSeconds(0.5f);
-            defender.attackedDialogue = null;
-        }
         yield return new WaitUntil(() => !screenDim.activeSelf);
 
         attackerHealth.GetComponent<RectTransform>().anchoredPosition = WorldToCanvasSpace(attacker.gameObject, defender.gameObject);
@@ -105,14 +99,6 @@ public class CombatManager : MonoBehaviour
         }
         else if(CheckForDeaths(attacker, defender) == "Defender")
         {
-            //Checks if the defender has dialogue for when its defeated
-            if(!dialoguePlayed && defender.defeatedDialogue != null){
-                MapDialogueManager.instance.WriteSingle(defender.defeatedDialogue);
-                dialoguePlayed = true;
-                yield return new WaitForSeconds(0.5f);
-            }
-            yield return new WaitUntil(() => !screenDim.activeSelf);
-
             defender.Death();
             yield return new WaitForSeconds(0.2f);            
             combatReadout.SetActive(false);
@@ -167,14 +153,6 @@ public class CombatManager : MonoBehaviour
             }
             else if(CheckForDeaths(attacker, defender) == "Defender")
             {
-                //Checks if the defender has dialogue for when its defeated
-                if(!dialoguePlayed && defender.defeatedDialogue != null){
-                    MapDialogueManager.instance.WriteSingle(defender.defeatedDialogue);
-                    dialoguePlayed = true;
-                    yield return new WaitForSeconds(0.5f);
-                }
-                yield return new WaitUntil(() => !screenDim.activeSelf);
-
                 defender.Death();
                 yield return new WaitForSeconds(0.2f);               
                 combatReadout.SetActive(false);
@@ -249,19 +227,6 @@ public class CombatManager : MonoBehaviour
         {
             cursor.cursorControls.SwitchCurrentActionMap("MapScene");
             cursor.SetState(new MapState(cursor));
-        }
-
-        //This block checks if an Ally Unit is below 50% health, which if true triggers their battle dialogue
-        if(attacker.unit.allyUnit && attacker.currentHealth < (attacker.unit.statistics.health * .5f) && attacker.currentHealth > 0 && !dialoguePlayed && !attacker.below50Quote){
-            MapDialogueManager.instance.WriteSingle(attacker.battleDialogue.under50Quote);
-            dialoguePlayed = true;
-            attacker.below50Quote = true;
-        }
-        else if(defender.unit.allyUnit && defender.currentHealth < (defender.unit.statistics.health * .5f) && defender.currentHealth > 0 && !dialoguePlayed && !defender.below50Quote)
-        {
-            MapDialogueManager.instance.WriteSingle(defender.battleDialogue.under50Quote);
-            dialoguePlayed = true;
-            defender.below50Quote = true;
         }
 
         if(TurnManager.instance.currentState.stateType == TurnState.StateType.Player)
@@ -372,7 +337,7 @@ public class CombatManager : MonoBehaviour
         }
 
         //Determine intensity of shake
-        if(intensity > 10){
+        if(intensity >= 10){
             intensity = 0.4f;
         }
         else if(intensity < 10){
@@ -410,13 +375,6 @@ public class CombatManager : MonoBehaviour
                 defender.currentHealth = defender.currentHealth - Critical(attacker, defender);
                 StartCoroutine(Shake(Critical(attacker, defender), true));
                 defenderHealth.value = defender.currentHealth;
-
-                //Display critial quote
-                if (attacker.unit.allyUnit && !defender.defeatedDialogue)
-                {
-                    MapDialogueManager.instance.WriteSingle(attacker.battleDialogue.RandomCritQuote());
-                    dialoguePlayed = true;
-                }
             }
             else
             {
@@ -454,14 +412,7 @@ public class CombatManager : MonoBehaviour
                     Instantiate(battleText, attacker.transform.position, Quaternion.identity);
                     attacker.currentHealth = attacker.currentHealth - Critical(defender, attacker);
                     StartCoroutine(Shake(Critical(defender, attacker), false));
-                    attackerHealth.value = attacker.currentHealth;
-                    
-                    //Display critial quote
-                    if(defender.unit.allyUnit && !attacker.defeatedDialogue)
-                    {
-                        MapDialogueManager.instance.WriteSingle(defender.battleDialogue.RandomCritQuote());
-                        dialoguePlayed = true;
-                    }
+                    attackerHealth.value = attacker.currentHealth;                    
                 }
                 else
                 {
@@ -602,11 +553,27 @@ public class CombatManager : MonoBehaviour
 
     public int Hit(UnitLoader attacker, UnitLoader defender)
     {
-        return attacker.CombatStatistics().attack - defender.CombatStatistics().protection;
+        if (!attacker.equippedWeapon.magical)
+        {
+            return attacker.CombatStatistics().attack - defender.CombatStatistics().resilience;
+
+        }
+        else
+        {
+            return attacker.CombatStatistics().attack - defender.CombatStatistics().protection;
+        }
+
     }
     private int Critical(UnitLoader attacker, UnitLoader defender)
     {
-        return attacker.CombatStatistics().attack * 2 - defender.CombatStatistics().protection;
+        if(!attacker.equippedWeapon.magical)
+        {
+            return attacker.CombatStatistics().attack * 2 - defender.CombatStatistics().resilience;
+        }
+        else
+        {
+            return attacker.CombatStatistics().attack * 2 - defender.CombatStatistics().protection;
+        }
     }
 
     private string CheckForDeaths(UnitLoader attacker, UnitLoader defender)
