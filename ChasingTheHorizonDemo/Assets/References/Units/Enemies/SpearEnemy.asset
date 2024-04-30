@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11676c21386630543861ef2a03ef9481, type: 3}
+  m_Name: SpearEnemy
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  portrait: {fileID: 0}
+  unitName: 
+  allyUnit: 0
+  diagonal: 0
+  statistics:
+    health: 0
+    strength: 0
+    magic: 0
+    defense: 0
+    resistance: 0
+    proficiency: 0
+    motivation: 0
+    agility: 0
+    movement: 0
+  growthRates:
+    healthGrowth: 0
+    strengthGrowth: 0
+    magicGrowth: 0
+    defenseGrowth: 0
+    resistanceGrowth: 0
+    proficiencyGrowth: 0
+    agilityGrowth: 0
+  weaponRanks:
+    swordRank: 0
+    polearmRank: 0
+    axeRank: 0
+    daggerRank: 0
+    rangedRank: 0
+  bondList: {fileID: 0}
+  spellList: {fileID: 0}

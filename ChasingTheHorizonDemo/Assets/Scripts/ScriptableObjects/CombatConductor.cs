@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CombatConductor : ScriptableObject
 {
-    private UnitLoader attackUnit;
-    private UnitLoader defendUnit;
+    private Unit attackUnit;
+    private Unit defendUnit;
 
     // On Combat Start
     // Check for Unit Skills
@@ -16,12 +16,12 @@ public class CombatConductor : ScriptableObject
     // Calculate damage for both units
     // Check if a unit dies after damage
 
-    public void CombatStart(UnitLoader attacker, UnitLoader defender)
+    public void CombatStart(Unit attacker, Unit defender)
     {
         LoadCombatants(attacker, defender);
     }    
 
-    private void LoadCombatants(UnitLoader attacker, UnitLoader defender)
+    private void LoadCombatants(Unit attacker, Unit defender)
     {
         attackUnit = null;
         defendUnit = null;
@@ -30,11 +30,11 @@ public class CombatConductor : ScriptableObject
         defendUnit = defender;
     }
 
-    private void SkillCheck(UnitLoader unit)
+    private void SkillCheck(Unit unit)
     {
         // If the unit has a skill that triggers, apply that skill
     }
-    private bool HitRoll(UnitLoader unit)
+    private bool HitRoll(Unit unit)
     {
         int roll = Random.Range(0, 99);
 
@@ -44,7 +44,7 @@ public class CombatConductor : ScriptableObject
         else
             return true;
     }
-    private bool CritRoll(UnitLoader unit)
+    private bool CritRoll(Unit unit)
     {
         int roll = Random.Range(0, 99);
 

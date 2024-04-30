@@ -80,7 +80,7 @@ public class CombatPreview : MonoBehaviour
         SoundManager.instance.PlayFX(11);
     }
 
-    private int HitPreview(UnitLoader attacker, UnitLoader defender)
+    private int HitPreview(Unit attacker, Unit defender)
     {
         return attacker.CombatStatistics().attack - defender.CombatStatistics().protection;
     }

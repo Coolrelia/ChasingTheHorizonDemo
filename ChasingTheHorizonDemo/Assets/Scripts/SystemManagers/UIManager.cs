@@ -42,6 +42,9 @@ public class UIManager : MonoBehaviour
     public Text tileName;
     public Text tileCost;
 
+    public UnitRuntimeList allyUnits;
+    public UnitRuntimeList enemyUnits;
+
     private void Start()
     {
         map = FindObjectOfType<TileMap>();
@@ -57,7 +60,7 @@ public class UIManager : MonoBehaviour
 
     private void AllyUnitUI()
     {
-        foreach(UnitLoader unit in TurnManager.instance.allyUnits)
+        foreach(Unit unit in allyUnits.objects)
         {
             if(transform.position == unit.transform.position && unit.unit.allyUnit && unit.currentHealth > 0)
             {
@@ -103,7 +106,7 @@ public class UIManager : MonoBehaviour
     }
     private void EnemyUnitUI()
     {
-        foreach (UnitLoader unit in TurnManager.instance.enemyUnits)
+        foreach (Unit unit in enemyUnits.objects)
         {
             if(transform.position == unit.transform.position && !unit.unit.allyUnit && unit.currentHealth > 0)
             {

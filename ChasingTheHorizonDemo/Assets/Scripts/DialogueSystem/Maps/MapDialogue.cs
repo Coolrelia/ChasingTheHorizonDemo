@@ -7,7 +7,7 @@ public class MapDialogue : ScriptableObject
     public bool textBox2;
     public bool battleDialogue;
     public bool scriptDialogue;    
-    public Unit unit;
+    public UnitData unit;
     [TextArea(2, 5)]
     public string dialogue;
     [HideInInspector]

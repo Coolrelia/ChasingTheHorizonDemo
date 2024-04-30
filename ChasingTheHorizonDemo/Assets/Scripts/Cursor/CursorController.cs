@@ -46,6 +46,9 @@ public class CursorController : MonoBehaviour
     
     private IEnumerator buttonHeldCoroutine = null;
 
+    //events
+    [SerializeField] private UnitInteractionEventReference attackEvent;
+
     public void SetState(CursorState state)
     {
         previousState = currentState;
@@ -180,7 +183,7 @@ public class CursorController : MonoBehaviour
     {
         Collider2D col = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("MapLayer"));
         if (col == null) return;
-        UnitLoader unit = col.GetComponent<UnitLoader>();
+        Unit unit = col.GetComponent<Unit>();
         if (unit.unit.allyUnit && unit.rested == false)
         {
             animator.SetTrigger("Rotate");
@@ -210,7 +213,7 @@ public class CursorController : MonoBehaviour
     {
         Collider2D col = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("MapLayer"));
         if (col == null) return;
-        UnitLoader unit = col.GetComponent<UnitLoader>();
+        Unit unit = col.GetComponent<Unit>();
         if (!unit.unit.allyUnit)
         {
             //SoundManager.instance.PlayFX(0);
@@ -225,7 +228,7 @@ public class CursorController : MonoBehaviour
     public void ResetTiles()
     {
         currentMap.DehighlightTiles();
-        foreach(UnitLoader unit in currentMap.enemyUnits)
+        foreach(Unit unit in currentMap.enemyUnits)
         {
             if(unit.spriteRenderer.color == Color.red)
             {
@@ -270,10 +273,10 @@ public class CursorController : MonoBehaviour
         */
 
         Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-        UnitLoader currentEnemy;
+        Unit currentEnemy;
         if (col.Length > 0)
         {
-            currentEnemy = col[0].GetComponent<UnitLoader>();
+            currentEnemy = col[0].GetComponent<Unit>();
             
             foreach (Node n in currentMap.walkableTiles)
             {
@@ -292,7 +295,7 @@ public class CursorController : MonoBehaviour
     public void UndoMove()
     {
         SoundManager.instance.PlayFX(1);
-        foreach (UnitLoader unit in currentMap.enemyUnits)
+        foreach (Unit unit in currentMap.enemyUnits)
         {
             unit.spriteRenderer.color = Color.white;
         }
@@ -314,7 +317,7 @@ public class CursorController : MonoBehaviour
     public void SelectTarget()
     {
         SoundManager.instance.PlayFX(0);
-        foreach (UnitLoader unit in currentMap.enemyUnits)
+        foreach (Unit unit in currentMap.enemyUnits)
         {
             if(transform.localPosition == unit.transform.localPosition && currentMap.selectedUnit.enemiesInRange.Contains(unit) && 
                 Vector2.Distance(currentMap.selectedUnit.transform.localPosition, unit.transform.localPosition) <= currentMap.selectedUnit.equippedWeapon.range)
@@ -340,7 +343,8 @@ public class CursorController : MonoBehaviour
     {
         currentMap.DehighlightTiles();
         // Engage Attack used the selected units combat conductor script
-        CombatManager.instance.EngageAttack(currentMap.selectedUnit, currentMap.selectedUnit.target);
+        //CombatManager.instance.EngageAttack(currentMap.selectedUnit, currentMap.selectedUnit.target);
+        attackEvent.Trigger(currentMap.selectedUnit, currentMap.selectedUnit.target);
         currentMap.selectedUnit.target.spriteRenderer.color = Color.white;
         currentMap.selectedUnit = null;
         ActionMenuManager.instance.combatPreview.SetActive(false);
@@ -350,7 +354,7 @@ public class CursorController : MonoBehaviour
     public void UndoAttack()
     {
         SoundManager.instance.PlayFX(1);
-        foreach (UnitLoader unit in currentMap.enemyUnits)
+        foreach (Unit unit in currentMap.enemyUnits)
         {
             unit.spriteRenderer.color = Color.white;
         }
@@ -363,13 +367,13 @@ public class CursorController : MonoBehaviour
     public void UseSpell()
     {
         Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-        UnitLoader unit = null;
+        Unit unit = null;
         SelectableTile tile = null;
         foreach(Collider2D go in col)
         {
-            if (go.GetComponent<UnitLoader>())
+            if (go.GetComponent<Unit>())
             {
-                unit = go.GetComponent<UnitLoader>();
+                unit = go.GetComponent<Unit>();
             }
             if (go.GetComponent<SelectableTile>())
             {
@@ -410,7 +414,8 @@ public class CursorController : MonoBehaviour
         // if the spell cost would kill the selected unit, perform the suicide cast action before killing unit
 
         currentMap.DehighlightTiles();
-        CombatManager.instance.EngageAttack(currentMap.selectedUnit, currentMap.selectedUnit.target);
+        //CombatManager.instance.EngageAttack(currentMap.selectedUnit, currentMap.selectedUnit.target);
+        attackEvent.Trigger(currentMap.selectedUnit, currentMap.selectedUnit.target);
         currentMap.selectedUnit.target.spriteRenderer.color = Color.white;
         currentMap.selectedUnit.equippedSpell = null;
         currentMap.selectedUnit = null;

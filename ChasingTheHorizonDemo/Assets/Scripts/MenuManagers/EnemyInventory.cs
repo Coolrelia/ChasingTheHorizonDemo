@@ -8,7 +8,7 @@ public class EnemyInventory : MonoBehaviour
     [SerializeField] private CursorController cursor = null;
     [SerializeField] private List<InventorySlot> items = new List<InventorySlot>();
 
-    public void DisplayInventory(UnitLoader unit)
+    public void DisplayInventory(Unit unit)
     {
         int amountOfItems = unit.inventory.inventory.Count;
         for(int i = 0; i < transform.childCount; i++)

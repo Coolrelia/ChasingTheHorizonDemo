@@ -5,17 +5,22 @@ using UnityEngine.EventSystems;
 public class OpheliaEvent : Event
 {
     [Header("Unique References")]
-    [SerializeField] private UnitLoader opheliaObject = null;
+    [SerializeField] private Unit opheliaObject = null;
     [SerializeField] private GameObject opheliaCG = null;
-    [SerializeField] private UnitLoader rolandObject = null;
+    [SerializeField] private Unit rolandObject = null;
     [SerializeField] private MapDialogue[] opheliaDialogue = null;
     [SerializeField] private MapDialogue[] opheliaDialogue2 = null;
     [SerializeField] private GameObject thanksForPlaying = null;
     [SerializeField] private GameObject restartButton = null;
     [SerializeField] private AudioClip enterOphelia = null;
-    [SerializeField] private UnitLoader royBoss = null;
+    [SerializeField] private Unit royBoss = null;
     private bool eventPlayed = false;
     private string difficulty = string.Empty;
+
+    [SerializeField] private UnitInteractionEventReference attackEvent;
+
+    public UnitRuntimeList allyUnits;
+    public UnitRuntimeList enemyUnits;
 
     private void Start()
     {
@@ -26,14 +31,14 @@ public class OpheliaEvent : Event
     {
         if(difficulty == "Normal")
         {
-            if (TurnManager.instance.enemyUnits.Count <= 0 && eventPlayed == false)
+            if (enemyUnits.objects.Count <= 0 && eventPlayed == false)
             {
                 StartCoroutine(Event());
             }
         }
         else if(difficulty == "Hard")
         {
-            if(!TurnManager.instance.enemyUnits.Contains(royBoss) && eventPlayed == false)
+            if(!enemyUnits.objects.Contains(royBoss) && eventPlayed == false)
             {
                 StartCoroutine(Event());
             }
@@ -69,7 +74,8 @@ public class OpheliaEvent : Event
         yield return new WaitUntil(() => (Vector2)opheliaObject.transform.localPosition == new Vector2(rolandObject.transform.localPosition.x - 1, rolandObject.transform.localPosition.y));
         yield return new WaitForSeconds(0.5f);
         //Attack Roland
-        CombatManager.instance.EngageAttack(opheliaObject, rolandObject);
+        //CombatManager.instance.EngageAttack(opheliaObject, rolandObject);
+        attackEvent.Trigger(opheliaObject, rolandObject);
         //Ophelia CG appears and the rest of the dialogue is displayed
         yield return new WaitForSeconds(2f);
         opheliaCG.SetActive(true);
@@ -85,7 +91,7 @@ public class OpheliaEvent : Event
         cursor.cursorControls.SwitchCurrentActionMap("UI");
         EventSystem.current.SetSelectedGameObject(restartButton.gameObject);
     }
-    private IEnumerator MoveUnit(UnitLoader currentEnemy, Vector2 targetPosition)
+    private IEnumerator MoveUnit(Unit currentEnemy, Vector2 targetPosition)
     {
         while(currentEnemy.transform.localPosition.x != targetPosition.x)
         {

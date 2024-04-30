@@ -3393,6 +3393,7 @@ MonoBehaviour:
   expSlider: {fileID: 293006184}
   battleText: {fileID: 1739066925469569432, guid: 221ee98ba9144d344b005f2baa0dccc2,
     type: 3}
+  attackEvent: {fileID: 11400000, guid: 96e1f7c240441c14eb048e338ec83849, type: 2}
 --- !u!1 &293006182
 GameObject:
   m_ObjectHideFlags: 0
@@ -4769,7 +4770,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 465964006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e4a24f8f80324348b0f27d3603997ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
@@ -4799,6 +4800,8 @@ MonoBehaviour:
   map: {fileID: 0}
   spriteRenderer: {fileID: 465964009}
   animator: {fileID: 465964010}
+  attackEvent: {fileID: 11400000, guid: 96e1f7c240441c14eb048e338ec83849, type: 2}
+  gameOver: {fileID: 11400000, guid: 498918f5798eee84d9f39f2cba3c6a64, type: 2}
 --- !u!212 &465964009
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4951,7 +4954,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 468930274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e4a24f8f80324348b0f27d3603997ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 11400000, guid: c714d829b5a3149418d7569575066032, type: 2}
@@ -4981,6 +4984,8 @@ MonoBehaviour:
   map: {fileID: 0}
   spriteRenderer: {fileID: 468930277}
   animator: {fileID: 468930279}
+  attackEvent: {fileID: 11400000, guid: 96e1f7c240441c14eb048e338ec83849, type: 2}
+  gameOver: {fileID: 11400000, guid: 498918f5798eee84d9f39f2cba3c6a64, type: 2}
 --- !u!212 &468930277
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8310,7 +8315,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 841415808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e4a24f8f80324348b0f27d3603997ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
@@ -8340,6 +8345,8 @@ MonoBehaviour:
   map: {fileID: 0}
   spriteRenderer: {fileID: 841415811}
   animator: {fileID: 841415812}
+  attackEvent: {fileID: 11400000, guid: 96e1f7c240441c14eb048e338ec83849, type: 2}
+  gameOver: {fileID: 11400000, guid: 498918f5798eee84d9f39f2cba3c6a64, type: 2}
 --- !u!212 &841415811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10789,6 +10796,7 @@ MonoBehaviour:
   frameRight: {fileID: 0}
   animator: {fileID: 0}
   buttonHeld: 0
+  attackEvent: {fileID: 11400000, guid: 96e1f7c240441c14eb048e338ec83849, type: 2}
 --- !u!114 &1088729402
 MonoBehaviour:
   m_ObjectHideFlags: 0

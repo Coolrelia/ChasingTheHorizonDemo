@@ -5,7 +5,7 @@ public class Map0ReinforcementEvent : Event
 {
     [Header("Unique References")]
     public GameObject reinforcements = null;
-    public UnitLoader[] reinforcementUnits = null;
+    public Unit[] reinforcementUnits = null;
 
     public override void StartEvent()
     {

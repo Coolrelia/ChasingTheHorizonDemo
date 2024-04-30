@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class CombatManager : MonoBehaviour
 {
-    public static CombatManager instance { get; private set; }
 
     //VARIABLES 
     private Vector3 originalCameraPosition = new Vector3(10.5f, 10.5f, -10);
@@ -29,28 +28,32 @@ public class CombatManager : MonoBehaviour
 
     private int lowhealthIndicator = 0;
 
-    private void Awake()
+    //EVENTS
+    [SerializeField] private UnitInteractionEventReference attackEvent;
+
+    public void Start()
     {
-        instance = this;
+        attackEvent.Event += EngageAttack;
     }
 
-    public void EngageAttack(UnitLoader attacker, UnitLoader defender)
+    private void EngageAttack(object sender, UnitInteractionEventReference.UnitInteractionEventReferenceArgs e)
     {
-        StartCoroutine(Attack(attacker, defender));
+        StartCoroutine(Attack(e.initiator, e.target));
 
-        attackerHealth.maxValue = attacker.unit.statistics.health;
-        attackerHealth.value = attacker.currentHealth;
+        attackerHealth.maxValue = e.initiator.unit.statistics.health;
+        attackerHealth.value = e.initiator.currentHealth;
 
-        defenderHealth.maxValue = defender.unit.statistics.health;
-        defenderHealth.value = defender.currentHealth;
+        defenderHealth.maxValue = e.target.unit.statistics.health;
+        defenderHealth.value = e.target.currentHealth;
 
         didHit = false;
     }
-    private IEnumerator Attack(UnitLoader attacker, UnitLoader defender)
+
+    private IEnumerator Attack(Unit attacker, Unit defender)
     {
         dialoguePlayed = false;
 
-        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>()){
+        foreach(Unit unit in FindObjectsOfType<Unit>()){
             if(unit.spriteRenderer.color == Color.red){
                 unit.spriteRenderer.color = Color.white;
             }
@@ -237,7 +240,7 @@ public class CombatManager : MonoBehaviour
         yield return null;
     }
 
-    private void ActionCamera(UnitLoader attacker, UnitLoader defender)
+    private void ActionCamera(Unit attacker, Unit defender)
     {
         var point1 = attacker.transform.localPosition;
         var point2 = defender.transform.localPosition;       
@@ -360,7 +363,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    private void InitiatorAttack(UnitLoader attacker, UnitLoader defender)
+    private void InitiatorAttack(Unit attacker, Unit defender)
     {
         //Check for a hit
         if(HitRoll(attacker))
@@ -396,7 +399,7 @@ public class CombatManager : MonoBehaviour
             return;
         }
     }
-    private void DefenderAttack(UnitLoader attacker, UnitLoader defender)
+    private void DefenderAttack(Unit attacker, Unit defender)
     {
         if(CheckDistance(defender, attacker) <= 1 || defender.equippedWeapon.range >= attacker.equippedWeapon.range)
         {
@@ -436,7 +439,7 @@ public class CombatManager : MonoBehaviour
         }
     }        
 
-    private void AttackAnimation(UnitLoader attacker, UnitLoader defender)
+    private void AttackAnimation(Unit attacker, Unit defender)
     {
         //XY Attacks
         if(attacker.transform.position.y == defender.transform.position.y)
@@ -516,11 +519,11 @@ public class CombatManager : MonoBehaviour
             }
         }
     }
-    private void PlayEffect(UnitLoader attacker, UnitLoader defender)
+    private void PlayEffect(Unit attacker, Unit defender)
     {
         StartCoroutine(EffectAnimation(attacker, defender));
     }
-    private IEnumerator EffectAnimation(UnitLoader attacker, UnitLoader defender)
+    private IEnumerator EffectAnimation(Unit attacker, Unit defender)
     {
         var effect = Instantiate(attacker.equippedWeapon.animation, defender.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(attacker.equippedWeapon.animationLength.length);
@@ -528,7 +531,7 @@ public class CombatManager : MonoBehaviour
         yield return null;
     }
     
-    private bool HitRoll(UnitLoader unit)
+    private bool HitRoll(Unit unit)
     {
         int roll = Random.Range(0, 99);
 
@@ -539,7 +542,7 @@ public class CombatManager : MonoBehaviour
             if (unit.unit.allyUnit) didHit = true;            
             return true;
     }
-    private bool CritRoll(UnitLoader unit)
+    private bool CritRoll(Unit unit)
     {
         int roll = Random.Range(0, 99);
 
@@ -551,7 +554,7 @@ public class CombatManager : MonoBehaviour
             return true;
     }
 
-    public int Hit(UnitLoader attacker, UnitLoader defender)
+    public int Hit(Unit attacker, Unit defender)
     {
         if (!attacker.equippedWeapon.magical)
         {
@@ -564,7 +567,7 @@ public class CombatManager : MonoBehaviour
         }
 
     }
-    private int Critical(UnitLoader attacker, UnitLoader defender)
+    private int Critical(Unit attacker, Unit defender)
     {
         if(!attacker.equippedWeapon.magical)
         {
@@ -576,11 +579,13 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    private string CheckForDeaths(UnitLoader attacker, UnitLoader defender)
+    private string CheckForDeaths(Unit attacker, Unit defender)
     {
         if(defender.currentHealth <= 0)
         {
-            AIManager.instance.enemyOrder.Remove(defender);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //AIManager.instance.enemyOrder.Remove(defender);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             return "Defender";
         }
         else if(attacker.currentHealth <= 0)
@@ -589,19 +594,19 @@ public class CombatManager : MonoBehaviour
         }
         return null;
     }
-    private bool CheckAttackSpeed(UnitLoader attacker, UnitLoader defender)
+    private bool CheckAttackSpeed(Unit attacker, Unit defender)
     {
         if(attacker.CombatStatistics().attackSpeed > defender.CombatStatistics().attackSpeed + 5)
             return true;
         else
             return false;
     }
-    private float CheckDistance(UnitLoader unit1, UnitLoader unit2)
+    private float CheckDistance(Unit unit1, Unit unit2)
     {
         return Mathf.Abs(unit1.transform.position.x - unit2.transform.position.x) + Mathf.Abs(unit1.transform.position.y - unit2.transform.position.y);
     }
 
-    private void GainExperience(UnitLoader attacker, UnitLoader defender)
+    private void GainExperience(Unit attacker, Unit defender)
     {
         //if the ally doesn't hit, don't gain exp
         //if the ally kills, gain extra exp
@@ -636,7 +641,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateEXP(UnitLoader unit)
+    private IEnumerator UpdateEXP(Unit unit)
     {
         yield return new WaitForSeconds(0.25f);
         while(expSlider.value != unit.exp)

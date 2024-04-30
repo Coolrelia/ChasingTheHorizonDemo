@@ -225,29 +225,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 2932573471089614718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e4a24f8f80324348b0f27d3603997ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: c714d829b5a3149418d7569575066032, type: 2}
   currentHealth: 0
+  level: 1
+  exp: 0
+  unitHP: 0
+  unitStr: 0
+  unitMag: 0
+  unitDef: 0
+  unitRes: 0
+  unitPrf: 0
+  unitAgi: 0
+  inventory: {fileID: 11400000, guid: 319afaef7c7647247beba9ec28e293f7, type: 2}
+  equippedWeapon: {fileID: 11400000, guid: ea8fbc99606b3ba468bf4242deafa798, type: 2}
+  activeSpells: []
+  equippedSpell: {fileID: 0}
   hasMoved: 0
   hasAttacked: 0
   rested: 0
   attackable: 0
   originalPosition: {x: 0, y: 0}
-  map: {fileID: 0}
-  unit: {fileID: 11400000, guid: c714d829b5a3149418d7569575066032, type: 2}
-  behaviorTag: {fileID: 2932573471089614714}
-  battleDialogue: {fileID: 0}
   target: {fileID: 0}
-  spriteRenderer: {fileID: 2932573471089614713}
-  animator: {fileID: 2932573471089614715}
-  inventory: {fileID: 2932573470475702768}
   actionMenu: {fileID: 0}
-  equippedWeapon: {fileID: 0}
+  actionMenuSpawn: {fileID: 0}
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 2932573471668334438}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
+  map: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  attackEvent: {fileID: 0}
+  gameOver: {fileID: 0}
 --- !u!114 &2932573471089614714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +272,7 @@ MonoBehaviour:
   order: 9
   blitz: 1
   defensive: 0
+  boss: 0
 --- !u!95 &2932573471089614715
 Animator:
   serializedVersion: 3

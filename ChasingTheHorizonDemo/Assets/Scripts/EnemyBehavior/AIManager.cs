@@ -15,17 +15,22 @@ public class AIManager : MonoBehaviour
     [SerializeField] private TileMap currentMap = null;
 
     private Animator enemyAnimator = null;
-    [SerializeField] private UnitLoader currentEnemy = null;
+    [SerializeField] private Unit currentEnemy = null;
     [SerializeField] private GameObject combatReadout = null;
     [SerializeField] private FastModeIndicator fastModeIndicator = null;
 
-    public List<UnitLoader> enemyOrder = new List<UnitLoader>();
+    public List<Unit> enemyOrder = new List<Unit>();
     [SerializeField] private List<Node> walkableTiles = new List<Node>();
-    [SerializeField] private List<UnitLoader> enemiesInRange = new List<UnitLoader>();
+    [SerializeField] private List<Unit> enemiesInRange = new List<Unit>();
 
     private Vector3 cameraTarget = new Vector3(0, 0, 0);
 
     private bool fastMode = false;
+
+    [SerializeField] private UnitInteractionEventReference attackEvent;
+
+    public UnitRuntimeList allyUnits;
+    public UnitRuntimeList enemyUnits;
 
     private void Awake()
     {
@@ -151,14 +156,14 @@ public class AIManager : MonoBehaviour
     }
     */
 
-    private void Blitz(UnitLoader currentEnemy)
+    private void Blitz(Unit currentEnemy)
     {
         currentEnemy.currentPath = null;
         GetEnemiesInAttackRange();
         if(enemiesInRange.Count == 0)
         {
             GetWalkableTiles();
-            UnitLoader closestAlly = FindClosestAlly();
+            Unit closestAlly = FindClosestAlly();
             Node closestTile = FindClosestTile(closestAlly);
             currentMap.GeneratePathTo(closestTile.x, closestTile.y, currentEnemy);            
             NodeMove(currentEnemy);
@@ -166,12 +171,14 @@ public class AIManager : MonoBehaviour
         }
         else if(enemiesInRange.Count == 1)
         {
-            CombatManager.instance.EngageAttack(currentEnemy, enemiesInRange[0]);
+            //CombatManager.instance.EngageAttack(currentEnemy, enemiesInRange[0]);
+            attackEvent.Trigger(currentEnemy, enemiesInRange[0]);
             return;
         }
         else if(enemiesInRange.Count >= 2)
         {
-            CombatManager.instance.EngageAttack(currentEnemy, DetermineWeakestUnit());
+            //CombatManager.instance.EngageAttack(currentEnemy, DetermineWeakestUnit());
+            attackEvent.Trigger(currentEnemy, DetermineWeakestUnit());
             return;
         }
     }
@@ -185,13 +192,15 @@ public class AIManager : MonoBehaviour
         }
         else if(enemiesInRange.Count == 1)
         {
-            CombatManager.instance.EngageAttack(currentEnemy, enemiesInRange[0]);
+            //CombatManager.instance.EngageAttack(currentEnemy, enemiesInRange[0]);
+            attackEvent.Trigger(currentEnemy, enemiesInRange[0]);
             return;
         }
         else if(enemiesInRange.Count >= 2)
         {
-            UnitLoader weakestAlly = DetermineWeakestUnit();
-            CombatManager.instance.EngageAttack(currentEnemy, weakestAlly);
+            Unit weakestAlly = DetermineWeakestUnit();
+            //CombatManager.instance.EngageAttack(currentEnemy, weakestAlly);
+            attackEvent.Trigger(currentEnemy, weakestAlly);
             return;
         }
     }
@@ -206,7 +215,7 @@ public class AIManager : MonoBehaviour
         else if(enemiesInRange.Count == 1)
         {
             GetWalkableTiles();
-            UnitLoader closestAlly = enemiesInRange[0];
+            Unit closestAlly = enemiesInRange[0];
             Node closestTile = FindClosestTile(closestAlly);
 
             Node currentTile = currentMap.ReturnNodeAt((int)currentEnemy.transform.localPosition.x, (int)currentEnemy.transform.localPosition.y);
@@ -227,7 +236,7 @@ public class AIManager : MonoBehaviour
         else if(enemiesInRange.Count >= 2)
         {
             GetWalkableTiles();
-            UnitLoader closestAlly = DetermineWeakestUnit();
+            Unit closestAlly = DetermineWeakestUnit();
             Node closestTile = FindClosestTile(closestAlly);
             
             Node currentTile = currentMap.ReturnNodeAt((int)currentEnemy.transform.localPosition.x, (int)currentEnemy.transform.localPosition.y);
@@ -271,7 +280,7 @@ public class AIManager : MonoBehaviour
         Node currentNode = currentMap.ReturnNodeAt((int)currentEnemy.transform.localPosition.x, (int)currentEnemy.transform.localPosition.y);
         Node enemyNode = null;
 
-        foreach(UnitLoader unit in TurnManager.instance.allyUnits)
+        foreach(Unit unit in allyUnits.objects)
         {
             if(unit.unit.allyUnit)
             {
@@ -291,7 +300,7 @@ public class AIManager : MonoBehaviour
         Node currentNode = currentMap.ReturnNodeAt((int)currentEnemy.transform.localPosition.x, (int)currentEnemy.transform.localPosition.y);
         Node enemyNode = null;
 
-        foreach (UnitLoader unit in TurnManager.instance.allyUnits)
+        foreach (Unit unit in allyUnits.objects)
         {
             if(unit.unit.allyUnit)
             {
@@ -307,27 +316,43 @@ public class AIManager : MonoBehaviour
         }
     }
 
-    private UnitLoader DetermineWeakestUnit()
+    // Stolen from Combat Manager for Now //
+    //      soz
+    public int Hit(Unit attacker, Unit defender)
     {
-        UnitLoader weakestUnit = null;
-        int highestDamage = 0;
-        foreach(UnitLoader unit in enemiesInRange)
+        if (!attacker.equippedWeapon.magical)
         {
-            if (CombatManager.instance.Hit(currentEnemy, unit) > highestDamage)
+            return attacker.CombatStatistics().attack - defender.CombatStatistics().resilience;
+
+        }
+        else
+        {
+            return attacker.CombatStatistics().attack - defender.CombatStatistics().protection;
+        }
+
+    }
+    private Unit DetermineWeakestUnit()
+    {
+        Unit weakestUnit = null;
+        int highestDamage = 0;
+        foreach(Unit unit in enemiesInRange)
+        {
+            if (Hit(currentEnemy, unit) > highestDamage)
             {
-                highestDamage = CombatManager.instance.Hit(currentEnemy, unit);
+                Hit(currentEnemy, unit);
                 weakestUnit = unit;
             }
         }
         return weakestUnit;
     }
-    private UnitLoader FindClosestAlly()
+
+    private Unit FindClosestAlly()
     {
         int closestSoFar = 100;
-        UnitLoader closestUnit = null;
+        Unit closestUnit = null;
         Node currentNode = currentMap.ReturnNodeAt((int)currentEnemy.transform.localPosition.x, (int)currentEnemy.transform.localPosition.y);
         Node unitNode = null;
-        foreach (UnitLoader unit in TurnManager.instance.allyUnits)
+        foreach (Unit unit in allyUnits.objects)
         {
             unitNode = currentMap.ReturnNodeAt((int)unit.transform.localPosition.x, (int)unit.transform.localPosition.y);
             if((currentNode.DistanceTo(unitNode)) <= closestSoFar)
@@ -338,7 +363,7 @@ public class AIManager : MonoBehaviour
         }
         return closestUnit;
     }
-    private Node FindClosestTile(UnitLoader unit)
+    private Node FindClosestTile(Unit unit)
     {
         int lowestSoFar = 100;
 
@@ -358,17 +383,17 @@ public class AIManager : MonoBehaviour
 
     private bool IsLastEnemy()
     {
-        foreach(UnitLoader unit in TurnManager.instance.enemyUnits) {
+        foreach(Unit unit in enemyUnits.objects) {
             if (unit.rested == false) return false;
         }
         return true;
     }
 
-    private void NodeMove(UnitLoader currentEnemy)
+    private void NodeMove(Unit currentEnemy)
     {
         StartCoroutine(NodeMovement(currentEnemy));
     }
-    private IEnumerator NodeMovement(UnitLoader currentEnemy)
+    private IEnumerator NodeMovement(Unit currentEnemy)
     {
         var moveSpeed = 2;
         if(fastMode)
@@ -413,11 +438,19 @@ public class AIManager : MonoBehaviour
             }
             GetEnemiesInAttackRange();
             if(enemiesInRange.Count == 1)
-                CombatManager.instance.EngageAttack(currentEnemy, enemiesInRange[0]);
+            {
+                //CombatManager.instance.EngageAttack(currentEnemy, enemiesInRange[0]);
+                attackEvent.Trigger(currentEnemy, enemiesInRange[0]);
+            }
             else if (enemiesInRange.Count >= 2)
-                CombatManager.instance.EngageAttack(currentEnemy, DetermineWeakestUnit());
+            {                
+                //CombatManager.instance.EngageAttack(currentEnemy, DetermineWeakestUnit());
+                attackEvent.Trigger(currentEnemy, DetermineWeakestUnit());
+            }
             else
+            {
                 currentEnemy.Rest();
+            }
 
             currentEnemy.animator.SetBool("Up", false);
             currentEnemy.animator.SetBool("Down", false);
@@ -429,7 +462,7 @@ public class AIManager : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveCamera(UnitLoader enemy)
+    private IEnumerator MoveCamera(Unit enemy)
     {
         var moveSpeed = 5;
         if (fastMode){

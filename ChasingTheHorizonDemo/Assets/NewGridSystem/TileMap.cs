@@ -12,7 +12,7 @@ public class TileMap : MonoBehaviour
     public int mapSizeX = 0;
     public int mapSizeY = 0;
 
-    public UnitLoader selectedUnit; 
+    public Unit selectedUnit; 
 
     public TileType[] tileTypes; 
     public int[,] tiles;
@@ -24,8 +24,8 @@ public class TileMap : MonoBehaviour
     public List<Node> walkableTiles;
     public List<Node> attackableTiles;
 
-    public List<UnitLoader> allyUnits;
-    public List<UnitLoader> enemyUnits;
+    public List<Unit> allyUnits;
+    public List<Unit> enemyUnits;
 
     private void Start()
     {
@@ -127,7 +127,7 @@ public class TileMap : MonoBehaviour
     }
     private void PopulateUnitLists()
     {
-        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        foreach(Unit unit in FindObjectsOfType<Unit>())
         {
             if (unit.unit.allyUnit)
             {
@@ -140,7 +140,7 @@ public class TileMap : MonoBehaviour
         }
     }
 
-    public void GeneratePathTo(int x, int y, UnitLoader unit)
+    public void GeneratePathTo(int x, int y, Unit unit)
     {
         unit.currentPath = null;
 
@@ -335,7 +335,7 @@ public class TileMap : MonoBehaviour
         return totalCost;
     }
 
-    public List<Node> GenerateRange(int x, int y, int size, UnitLoader unit, bool pathing)
+    public List<Node> GenerateRange(int x, int y, int size, Unit unit, bool pathing)
     {
         // Final list that gets returned
         List<Node> finalList = new List<Node>();
@@ -433,7 +433,7 @@ public class TileMap : MonoBehaviour
         }        
         return finalList;
     }
-    public List<Node> GenerateWalkableRange(int x, int y, int size, UnitLoader unit)
+    public List<Node> GenerateWalkableRange(int x, int y, int size, Unit unit)
     {
         // Final list that gets returned
         List<Node> finalList = new List<Node>();
@@ -510,7 +510,7 @@ public class TileMap : MonoBehaviour
         }
         return finalList;
     } 
-    public List<Node> GenerateAttackableRange(int x, int y, int size, UnitLoader unit)
+    public List<Node> GenerateAttackableRange(int x, int y, int size, Unit unit)
     {
         // Final list that gets returned
         List<Node> finalList = new List<Node>();
@@ -646,7 +646,7 @@ public class TileMap : MonoBehaviour
     }
     public bool IsOccupied(int x, int y)
     {
-        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        foreach(Unit unit in FindObjectsOfType<Unit>())
         {
             if(unit.transform.localPosition == new Vector3(x, y))
             {
@@ -657,7 +657,7 @@ public class TileMap : MonoBehaviour
     }
     public bool IsOccupiedByEnemy(int x, int y)
     {
-        foreach (UnitLoader unit in enemyUnits)
+        foreach (Unit unit in enemyUnits)
         {
             if(unit != null && unit.transform.localPosition == new Vector3(x, y))
             {

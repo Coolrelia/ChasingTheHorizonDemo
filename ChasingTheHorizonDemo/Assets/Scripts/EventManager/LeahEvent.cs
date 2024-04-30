@@ -3,8 +3,8 @@ using UnityEngine;
 public class LeahEvent : Event
 {
     [Header("Unique References")]
-    public UnitLoader leahObjectNormalMode;
-    public UnitLoader leahObjectHardMode;
+    public Unit leahObjectNormalMode;
+    public Unit leahObjectHardMode;
     public MapDialogue leahDialogue;
 
     [Header("Normal Mode")]
@@ -49,11 +49,11 @@ public class LeahEvent : Event
 
         if(difficulty == "Normal")        {
             leahObjectNormalMode.gameObject.SetActive(true);
-            TurnManager.instance.allyUnits.Add(leahObjectNormalMode.GetComponent<UnitLoader>());
+            TurnManager.instance.allyUnits.Add(leahObjectNormalMode.GetComponent<Unit>());
         }        
         else if(difficulty == "Hard")        {
             leahObjectHardMode.gameObject.SetActive(true);
-            TurnManager.instance.allyUnits.Add(leahObjectHardMode.GetComponent<UnitLoader>());
+            TurnManager.instance.allyUnits.Add(leahObjectHardMode.GetComponent<Unit>());
         }
 
         while (mainCamera.transform.position.x != targetPosition.x)
@@ -91,7 +91,7 @@ public class LeahEvent : Event
         loseManager.gameObject.SetActive(true);
         finished = true;
     }
-    private IEnumerator MoveUnit(Vector2 targetPosition, UnitLoader leahObject)
+    private IEnumerator MoveUnit(Vector2 targetPosition, Unit leahObject)
     {
         while(leahObject.transform.localPosition.x != targetPosition.x)
         {
