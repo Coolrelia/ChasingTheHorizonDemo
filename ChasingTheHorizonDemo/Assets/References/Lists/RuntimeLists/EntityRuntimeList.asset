@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7973f6fcae124264faa15bec3451463d, type: 3}
-  m_Name: New Entity Runtime List
+  m_Name: EntityRuntimeList
   m_EditorClassIdentifier: 
   objects: []

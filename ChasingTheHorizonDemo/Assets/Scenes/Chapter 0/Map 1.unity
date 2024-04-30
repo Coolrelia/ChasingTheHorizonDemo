@@ -4773,6 +4773,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4a24f8f80324348b0f27d3603997ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityList: {fileID: 11400000, guid: d15ec6a125c48e7489e8373d1ebc2259, type: 2}
+  coordinates:
+    x: 0
+    y: 0
+  unitList: {fileID: 11400000, guid: 787bdf1f6e51fce40a1ef8945fc77bd5, type: 2}
+  allyUnitList: {fileID: 11400000, guid: f71c1519356db3d4b892383fdd14eebf, type: 2}
+  enemyUnitList: {fileID: 11400000, guid: 3575c4ce7c6f0964f90cc2e1b8cd59b3, type: 2}
   unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
   currentHealth: 0
   level: 1
@@ -4957,6 +4964,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4a24f8f80324348b0f27d3603997ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityList: {fileID: 11400000, guid: d15ec6a125c48e7489e8373d1ebc2259, type: 2}
+  coordinates:
+    x: 0
+    y: 0
+  unitList: {fileID: 11400000, guid: 787bdf1f6e51fce40a1ef8945fc77bd5, type: 2}
+  allyUnitList: {fileID: 11400000, guid: f71c1519356db3d4b892383fdd14eebf, type: 2}
+  enemyUnitList: {fileID: 11400000, guid: 3575c4ce7c6f0964f90cc2e1b8cd59b3, type: 2}
   unit: {fileID: 11400000, guid: c714d829b5a3149418d7569575066032, type: 2}
   currentHealth: 0
   level: 1
@@ -5583,6 +5597,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitSlot: {fileID: 4930243442865517260, guid: 5ed1cc99088876d459e6cf3709a47a9d,
     type: 3}
+  allyUnits: {fileID: 0}
+  enemyUnits: {fileID: 0}
 --- !u!95 &516384063
 Animator:
   serializedVersion: 3
@@ -8318,6 +8334,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4a24f8f80324348b0f27d3603997ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityList: {fileID: 11400000, guid: d15ec6a125c48e7489e8373d1ebc2259, type: 2}
+  coordinates:
+    x: 0
+    y: 0
+  unitList: {fileID: 11400000, guid: 787bdf1f6e51fce40a1ef8945fc77bd5, type: 2}
+  allyUnitList: {fileID: 11400000, guid: f71c1519356db3d4b892383fdd14eebf, type: 2}
+  enemyUnitList: {fileID: 11400000, guid: 3575c4ce7c6f0964f90cc2e1b8cd59b3, type: 2}
   unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
   currentHealth: 0
   level: 1
@@ -10833,6 +10856,8 @@ MonoBehaviour:
   enemyWeapon: {fileID: 0}
   tileName: {fileID: 138204834}
   tileCost: {fileID: 2054155895}
+  allyUnits: {fileID: 0}
+  enemyUnits: {fileID: 0}
 --- !u!95 &1088729403
 Animator:
   serializedVersion: 3
@@ -13911,8 +13936,8 @@ MonoBehaviour:
   screenDim: {fileID: 114527844}
   allyTurnGraphic: {fileID: 914682953}
   enemyTurnGraphic: {fileID: 31462791}
-  allyUnits: []
-  enemyUnits: []
+  allyUnits: {fileID: 11400000, guid: f71c1519356db3d4b892383fdd14eebf, type: 2}
+  enemyUnits: {fileID: 11400000, guid: 3575c4ce7c6f0964f90cc2e1b8cd59b3, type: 2}
   map: {fileID: 39828026}
 --- !u!114 &1493851826
 MonoBehaviour:
