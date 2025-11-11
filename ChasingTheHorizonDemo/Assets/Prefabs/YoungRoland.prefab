@@ -256,17 +256,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4288517369593911391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e4a24f8f80324348b0f27d3603997ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 0}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -274,21 +270,24 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 4288517369593911386}
-  target: {fileID: 0}
-  inventory: {fileID: 4288517369133091792}
-  actionMenu: {fileID: 0}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
+  activeSpells: []
+  equippedSpell: {fileID: 0}
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 0}
+  actionMenuSpawn: {fileID: 0}
   enemiesInRange: []
-  actionMenuSpawn: {fileID: 4288517368772339991}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
   map: {fileID: 0}
-  spriteRenderer: {fileID: 4288517369593911388}
-  animator: {fileID: 4288517369593911387}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  attackEvent: {fileID: 0}
+  gameOver: {fileID: 0}
 --- !u!114 &4288517369593911386
 MonoBehaviour:
   m_ObjectHideFlags: 0

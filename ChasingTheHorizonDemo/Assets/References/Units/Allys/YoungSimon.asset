@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11676c21386630543861ef2a03ef9481, type: 3}
+  m_Name: YoungSimon
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 6281134397095185206, guid: 1f3411609eac34f48aa480707d5359c4, type: 3}
+  portrait: {fileID: 21300000, guid: c042f133acc540347a6b4687beab2862, type: 3}
+  unitName: Simon
+  allyUnit: 1
+  diagonal: 0
+  statistics:
+    health: 20
+    strength: 5
+    magic: 4
+    defense: 1
+    resistance: 2
+    proficiency: 0
+    motivation: 0
+    agility: 0
+    movement: 3
+  growthRates:
+    healthGrowth: 0
+    strengthGrowth: 0
+    magicGrowth: 0
+    defenseGrowth: 0
+    resistanceGrowth: 0
+    proficiencyGrowth: 0
+    agilityGrowth: 0
+  weaponRanks:
+    swordRank: 0
+    polearmRank: 0
+    axeRank: 0
+    daggerRank: 0
+    rangedRank: 0
+  bondList: {fileID: 11400000, guid: b91dacab498dd264288539c581198933, type: 2}
+  spellList: {fileID: 0}

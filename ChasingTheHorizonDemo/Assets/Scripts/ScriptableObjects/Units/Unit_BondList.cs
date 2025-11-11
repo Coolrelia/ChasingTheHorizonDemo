@@ -6,5 +6,5 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "New BondList", menuName = "Units/BondList")]
 public class Unit_BondList : SerializedScriptableObject
 {
-    public Dictionary<Unit, int> bondList = new Dictionary<Unit, int>();
+    public Dictionary<UnitData, int> bondList = new Dictionary<UnitData, int>();
 }

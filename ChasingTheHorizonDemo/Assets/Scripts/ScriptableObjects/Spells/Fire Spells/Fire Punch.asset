@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990a874a60ea28c409ad4842db09e89a, type: 3}
+  m_Name: Fire Punch
+  m_EditorClassIdentifier: 
+  spellName: Fire Punch
+  hpCost: 0
+  element: {fileID: 11400000, guid: b1fdb316b623f1246b81bf45028e5c81, type: 2}
+  effects: []
+  might: 0
+  hit: 0
+  crit: 0
+  range: 0
+  physical: 1
+  friendlyFire: 0

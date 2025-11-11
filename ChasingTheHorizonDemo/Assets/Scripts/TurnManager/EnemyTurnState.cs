@@ -28,7 +28,7 @@ public class EnemyTurnState : TurnState
         yield return new WaitForSeconds(0.85f);
         turnManager.screenDim.animator.SetTrigger("FadeOut");
         AIManager.instance.enemyOrder.Clear();
-        AIManager.instance.SetEnemyOrder();
+        //AIManager.instance.SetEnemyOrder();
         turnManager.RefreshEnemies();
         turnManager.cursor.CloseMenu();
         turnManager.RefreshAllySprites();

@@ -1093,14 +1093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -1108,18 +1104,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 177340611}
-  target: {fileID: 0}
-  inventory: {fileID: 992934447}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 275078681}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 177340613}
   animator: {fileID: 177340610}
@@ -1386,7 +1381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225585086
 GameObject:
@@ -1472,14 +1467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: a3d7b9b3af39b8247a2bf7bea7313b90, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -1487,18 +1478,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: a3d7b9b3af39b8247a2bf7bea7313b90, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 0}
-  target: {fileID: 0}
-  inventory: {fileID: 1045897608}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 1773532671}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 225585091}
   animator: {fileID: 225585088}
@@ -1936,7 +1926,7 @@ Transform:
   - {fileID: 1598764854}
   - {fileID: 2147108844}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &273220393
 MonoBehaviour:
@@ -2883,14 +2873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -2898,18 +2884,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: 59b1220a3b630e24c9b88bbebfffc816, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 465964012}
-  target: {fileID: 0}
-  inventory: {fileID: 1025458210}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 1131012815}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 465964009}
   animator: {fileID: 465964010}
@@ -3160,7 +3145,7 @@ Transform:
   - {fileID: 1088729400}
   - {fileID: 2104024441}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &539428576 stripped
 MonoBehaviour:
@@ -4700,14 +4685,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: a3d7b9b3af39b8247a2bf7bea7313b90, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -4715,18 +4696,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: a3d7b9b3af39b8247a2bf7bea7313b90, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 0}
-  target: {fileID: 0}
-  inventory: {fileID: 297070398}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 995116934}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 878704558}
   animator: {fileID: 878704555}
@@ -10871,14 +10851,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -10886,18 +10862,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: 851570f65e645e94b8c4799514a54584, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 1125065826}
-  target: {fileID: 0}
-  inventory: {fileID: 1863303679}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 767356098}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 1125065828}
   animator: {fileID: 1125065825}
@@ -12122,14 +12097,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 9b7ba59209b8b1149bdf640216601f9a, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -12137,18 +12108,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: 9b7ba59209b8b1149bdf640216601f9a, type: 2}
-  behaviorTag: {fileID: 1336252262}
-  battleDialogue: {fileID: 0}
-  target: {fileID: 0}
-  inventory: {fileID: 867998966}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 1634209037}
-  attackedDialogue: {fileID: 11400000, guid: 7f3d74bb2a29b2c4688982df6a626d86, type: 2}
-  defeatedDialogue: {fileID: 11400000, guid: d6ceb820b8e4d174da31f43f9670fed7, type: 2}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 1336252264}
   animator: {fileID: 1336252261}
@@ -17618,7 +17588,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1493851825
 MonoBehaviour:
@@ -18268,14 +18238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 9b7ba59209b8b1149bdf640216601f9a, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -18283,18 +18249,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: 9b7ba59209b8b1149bdf640216601f9a, type: 2}
-  behaviorTag: {fileID: 1589565372}
-  battleDialogue: {fileID: 0}
-  target: {fileID: 0}
-  inventory: {fileID: 1235515054}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 1705932332}
-  attackedDialogue: {fileID: 11400000, guid: 7f3d74bb2a29b2c4688982df6a626d86, type: 2}
-  defeatedDialogue: {fileID: 11400000, guid: d6ceb820b8e4d174da31f43f9670fed7, type: 2}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 1589565371}
   animator: {fileID: 1589565373}
@@ -18785,14 +18750,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: cc2898325ea080f4ba5ee8e6d5cfa415, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -18800,18 +18761,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: cc2898325ea080f4ba5ee8e6d5cfa415, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 1625918928}
-  target: {fileID: 0}
-  inventory: {fileID: 697433500}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 181921672}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 1625918925}
   animator: {fileID: 1625918926}
@@ -24415,14 +24375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 9d670ac7311fe314c83381b72f570d0e, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -24430,18 +24386,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: 9d670ac7311fe314c83381b72f570d0e, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 1807665275}
-  target: {fileID: 0}
-  inventory: {fileID: 1776641930}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 1346716325}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 1807665277}
   animator: {fileID: 1807665274}
@@ -24526,7 +24481,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1815038033
 MonoBehaviour:
@@ -30354,14 +30309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: cc2898325ea080f4ba5ee8e6d5cfa415, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -30369,18 +30320,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: cc2898325ea080f4ba5ee8e6d5cfa415, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 1988119474}
-  target: {fileID: 0}
-  inventory: {fileID: 929122843}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 1659680134}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 1988119476}
   animator: {fileID: 1988119473}
@@ -30767,14 +30717,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3784c3d22113147b8f9969ca42bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 9d670ac7311fe314c83381b72f570d0e, type: 2}
   currentHealth: 0
   level: 1
   exp: 0
-  hasMoved: 0
-  hasAttacked: 0
-  rested: 0
-  attackable: 0
-  originalPosition: {x: 0, y: 0}
   unitHP: 0
   unitStr: 0
   unitMag: 0
@@ -30782,18 +30728,17 @@ MonoBehaviour:
   unitRes: 0
   unitPrf: 0
   unitAgi: 0
-  unit: {fileID: 11400000, guid: 9d670ac7311fe314c83381b72f570d0e, type: 2}
-  behaviorTag: {fileID: 0}
-  battleDialogue: {fileID: 2096008269}
-  target: {fileID: 0}
-  inventory: {fileID: 1134573761}
-  actionMenu: {fileID: 20749242}
+  inventory: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  enemiesInRange: []
+  hasMoved: 0
+  hasAttacked: 0
+  rested: 0
+  attackable: 0
+  originalPosition: {x: 0, y: 0}
+  target: {fileID: 0}
+  actionMenu: {fileID: 20749242}
   actionMenuSpawn: {fileID: 1398477644}
-  attackedDialogue: {fileID: 0}
-  defeatedDialogue: {fileID: 0}
-  below50Quote: 0
+  enemiesInRange: []
   map: {fileID: 0}
   spriteRenderer: {fileID: 2096008265}
   animator: {fileID: 2096008267}
@@ -31226,17 +31171,17 @@ PrefabInstance:
     - target: {fileID: 4790933946463596544, guid: 4d1c787d3aa9e3a49804d4bfef563cea,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4790933946463596544, guid: 4d1c787d3aa9e3a49804d4bfef563cea,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4790933946463596544, guid: 4d1c787d3aa9e3a49804d4bfef563cea,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4790933946463596544, guid: 4d1c787d3aa9e3a49804d4bfef563cea,
         type: 3}
@@ -31313,17 +31258,17 @@ PrefabInstance:
     - target: {fileID: 4288517369593911390, guid: 8baffd2b0a49e0f46ba0651fa0210581,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4288517369593911390, guid: 8baffd2b0a49e0f46ba0651fa0210581,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4288517369593911390, guid: 8baffd2b0a49e0f46ba0651fa0210581,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4288517369593911390, guid: 8baffd2b0a49e0f46ba0651fa0210581,
         type: 3}
@@ -31437,7 +31382,7 @@ PrefabInstance:
     - target: {fileID: 6024655724616688745, guid: cda0a11ce15957d41b17f4ecdd615a2d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6024655724616688745, guid: cda0a11ce15957d41b17f4ecdd615a2d,
         type: 3}
@@ -31606,7 +31551,7 @@ PrefabInstance:
     - target: {fileID: 6522615351035867476, guid: f57e90d8a43de2144b1b82b81e29aecc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6522615351035867476, guid: f57e90d8a43de2144b1b82b81e29aecc,
         type: 3}

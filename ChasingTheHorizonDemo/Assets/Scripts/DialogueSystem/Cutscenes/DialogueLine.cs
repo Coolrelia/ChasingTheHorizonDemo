@@ -28,7 +28,7 @@ namespace DialogueSystem
         public bool triggerMusic = false;
 
         [Header("Character")]
-        [SerializeField] private Unit character = null;
+        [SerializeField] private UnitData character = null;
 
         [Header("Image Holder")]
         [SerializeField] private SpriteRenderer imageHolder = null;

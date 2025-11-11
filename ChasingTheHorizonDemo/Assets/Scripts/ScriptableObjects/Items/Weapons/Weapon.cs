@@ -10,6 +10,7 @@ public class Weapon : Item
     public int crit = 0;
     public int range = 0;
     public int weight = 0;
+    public bool magical = false;
 
     public GameObject animation = null;
     public AnimationClip animationLength = null;

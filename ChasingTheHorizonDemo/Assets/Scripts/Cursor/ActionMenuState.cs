@@ -14,6 +14,9 @@
         if(ActionMenuManager.instance.inventoryMenu.activeSelf) {
             cursorController.CloseInventory();
         }
+        else if (ActionMenuManager.instance.spellMenu.activeSelf){
+            cursorController.CloseInventory();
+        }
         else {
             cursorController.UndoMove();
         }

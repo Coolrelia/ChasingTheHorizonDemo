@@ -19,24 +19,28 @@ public class LoseManager : MonoBehaviour
     [Header("Check this box if you want the player to lose when a specific ally unit dies")]
     public bool specificAlly = false;
     [Header("Drop the specific allies who's deaths will trigger a loss")]
-    public List<UnitLoader> specificAllies = new List<UnitLoader>();
+    public List<Unit> specificAllies = new List<Unit>();
     private bool gameOver = false;
     private CursorController cursor = null;
+
+    public UnitRuntimeList allyUnits;
+    
+    [SerializeField] private SimpleGameEventReference gameOverEvent;
 
     private void Awake()
     {
         instance = this;
     }
-
     private void Start()
     {
         cursor = FindObjectOfType<CursorController>();
+        gameOverEvent.Event += StartGameOver;
     }
     private void Update()
     {
         if(!gameOver){
             if(allAllies){
-                if(TurnManager.instance.allyUnits.Count <= 0 && !combatReadout.activeSelf){
+                if(allyUnits.objects.Count <= 0 && !combatReadout.activeSelf){
                     StartCoroutine(GameOver());
                     gameOver = true;
                 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 //Used in conjuction with the Units Menu
 public class UnitSlot : MonoBehaviour
 {
-    public UnitLoader slotUnit = null;
+    public Unit slotUnit = null;
 
     [SerializeField] private Image sprite = null;
     [SerializeField] private Text unitName = null;
@@ -14,7 +14,7 @@ public class UnitSlot : MonoBehaviour
     [SerializeField] private Text unitEXP = null;
     [SerializeField] private Text unitHealth = null;
 
-    public void FillSlot(UnitLoader unit)
+    public void FillSlot(Unit unit)
     {
         slotUnit = unit;
 

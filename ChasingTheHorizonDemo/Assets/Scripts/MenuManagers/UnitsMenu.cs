@@ -16,6 +16,8 @@ public class UnitsMenu : MonoBehaviour
     //REFERENCES
     [SerializeField] private UnitSlot unitSlot = null;
     private UnitSlot selectedSlot = null;
+    public UnitRuntimeList allyUnits;
+    public UnitRuntimeList enemyUnits;
 
 
     private void OnEnable()
@@ -31,11 +33,11 @@ public class UnitsMenu : MonoBehaviour
 
     private void SetSlots()
     {
-        for (int i = 0; i < TurnManager.instance.allyUnits.Count; i++)
+        for (int i = 0; i < allyUnits.objects.Count; i++)
         {
             selectedSlot = Instantiate(unitSlot, transform);
             SlotPosition();
-            selectedSlot.FillSlot(TurnManager.instance.allyUnits[i]);
+            selectedSlot.FillSlot(allyUnits.objects[i]);
         }
     }
     private void SlotPosition()

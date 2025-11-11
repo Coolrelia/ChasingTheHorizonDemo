@@ -23,8 +23,10 @@ public class TurnManager : MonoBehaviour
     public GameObject allyTurnGraphic = null;
     public GameObject enemyTurnGraphic = null; 
 
-    public List<UnitLoader> allyUnits = new List<UnitLoader>();
-    public List<UnitLoader> enemyUnits = new List<UnitLoader>();
+    //public List<Unit> allyUnits = new List<Unit>();
+    //public List<Unit> enemyUnits = new List<Unit>();
+    public UnitRuntimeList allyUnits;
+    public UnitRuntimeList enemyUnits;
 
     public TurnState currentState = null;
 
@@ -60,7 +62,7 @@ public class TurnManager : MonoBehaviour
         turnNumberText.text = turnNumber.ToString();
 
         //Switches To Enemy Turn
-        foreach(UnitLoader unit in allyUnits) {
+        foreach(Unit unit in allyUnits.objects) {
             if (unit.rested == false) return;
         }
         if(currentState.stateType == TurnState.StateType.Player) {
@@ -91,7 +93,7 @@ public class TurnManager : MonoBehaviour
 
     public void FindAllys()
     {
-        foreach (UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        foreach (Unit unit in FindObjectsOfType<Unit>())
         {
             if (unit.unit.allyUnit)
             {
@@ -101,7 +103,7 @@ public class TurnManager : MonoBehaviour
     }
     public void FindEnemies()
     {
-        foreach (UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        foreach (Unit unit in FindObjectsOfType<Unit>())
         {
             if (!unit.unit.allyUnit)
             {
@@ -111,14 +113,14 @@ public class TurnManager : MonoBehaviour
     }
     public void RefreshAllys()
     {
-        foreach(UnitLoader unit in allyUnits)
+        foreach(Unit unit in allyUnits.objects)
         {
             unit.Stand();
         }
     }
     public void RefreshEnemies()
     {
-        foreach (UnitLoader unit in enemyUnits)
+        foreach (Unit unit in enemyUnits.objects)
         {
             unit.Stand();
         }
@@ -126,7 +128,7 @@ public class TurnManager : MonoBehaviour
 
     public void RefreshAllySprites()
     {
-        foreach(UnitLoader unit in TurnManager.instance.allyUnits)
+        foreach(Unit unit in allyUnits.objects)
         {
             unit.spriteRenderer.color = new Color32(255, 255, 255, 255);
         }

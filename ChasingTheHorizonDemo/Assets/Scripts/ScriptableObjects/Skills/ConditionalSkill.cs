@@ -6,4 +6,10 @@ using UnityEngine;
 public class ConditionalSkill : Skill
 {
     public SkillCondition[] skillCondition;
+
+    public bool ConditionMet()
+    {
+        // loop through all skill conditions and check if they return true
+        return false;
+    }
 }

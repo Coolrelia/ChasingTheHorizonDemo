@@ -47,7 +47,7 @@ public class MenuManager : MonoBehaviour
     public void EndTurn()
     {
         cursor.cursorControls.currentActionMap.Disable();
-        foreach (UnitLoader unit in FindObjectsOfType<UnitLoader>()) {
+        foreach (Unit unit in FindObjectsOfType<Unit>()) {
             if(unit.unit.allyUnit == true) {
                 unit.Rest();
             }

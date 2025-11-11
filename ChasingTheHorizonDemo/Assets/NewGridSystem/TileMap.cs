@@ -4,13 +4,15 @@ using System.Linq;
 
 public class TileMap : MonoBehaviour
 {
+    public Transform tileParent;
+
     public TextAsset mapData;
     private string mapValues;
 
     public int mapSizeX = 0;
     public int mapSizeY = 0;
 
-    public UnitLoader selectedUnit; 
+    public Unit selectedUnit; 
 
     public TileType[] tileTypes; 
     public int[,] tiles;
@@ -22,8 +24,8 @@ public class TileMap : MonoBehaviour
     public List<Node> walkableTiles;
     public List<Node> attackableTiles;
 
-    public List<UnitLoader> allyUnits = new List<UnitLoader>();
-    public List<UnitLoader> enemyUnits = new List<UnitLoader>();
+    public List<Unit> allyUnits;
+    public List<Unit> enemyUnits;
 
     private void Start()
     {
@@ -33,18 +35,7 @@ public class TileMap : MonoBehaviour
         GeneratePathfindingGraph();
         GenerateMapFromFile();
         GenerateMapVisuals();
-
-        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>())
-        {
-            if(unit.unit.allyUnit)
-            {
-                allyUnits.Add(unit);
-            }
-            else
-            {
-                enemyUnits.Add(unit);
-            }
-        }
+        PopulateUnitLists();
     }
     
     private void InitializeMapData()
@@ -100,45 +91,56 @@ public class TileMap : MonoBehaviour
 
                 TileType tt = tileTypes[tiles[x, y]];
 
-                GameObject go = Instantiate(tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, transform);
+                GameObject go = Instantiate(tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, tileParent);
                 SelectableTile st = go.GetComponent<SelectableTile>();
                 st.tileX = x;
                 st.tileY = y;
                 st.map = this;
-            }
-        }
 
-        for(int x = 0; x < mapSizeX; x++){
-            for(int y = 0; y < mapSizeY; y++){
-
-                graph[x, y].redHighlight = Instantiate(redHighlight, new Vector2(x + 0.5f, y + 0.5f), Quaternion.identity, transform);
-                graph[x, y].blueHighlight = Instantiate(blueHighlight, new Vector2(x + 0.5f, y + 0.5f), Quaternion.identity, transform);
+                graph[x, y].redHighlight = Instantiate(redHighlight, new Vector2(x + 0.5f, y + 0.5f), Quaternion.identity, go.transform);
+                graph[x, y].blueHighlight = Instantiate(blueHighlight, new Vector2(x + 0.5f, y + 0.5f), Quaternion.identity, go.transform);
 
                 graph[x, y].redHighlight.SetActive(false);
                 graph[x, y].blueHighlight.SetActive(false);
             }
         }
 
+        /*
         foreach(SelectableTile tile in FindObjectsOfType<SelectableTile>())
         {
             tile.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 0);
         }
+        */
     }
     private void GenerateMapFromFile()
-    {        
+    {
         int y = 0;
         while(y < mapSizeY)
-        {
-            for(int x = 0; x < mapSizeX; x++)
+        {            
+            for (int x = 0; x < mapSizeX; x++)
             {
                 tiles[x, y] = (int)char.GetNumericValue(mapValues[x]);
             }
-            mapValues = mapValues.Remove(0, 20);
+            mapValues = mapValues.Remove(0, mapSizeX);
             y++;
-        }   
+        }
+    }
+    private void PopulateUnitLists()
+    {
+        foreach(Unit unit in FindObjectsOfType<Unit>())
+        {
+            if (unit.unit.allyUnit)
+            {
+                allyUnits.Add(unit);
+            }
+            else
+            {
+                enemyUnits.Add(unit);
+            }
+        }
     }
 
-    public void GeneratePathTo(int x, int y, UnitLoader unit)
+    public void GeneratePathTo(int x, int y, Unit unit)
     {
         unit.currentPath = null;
 
@@ -333,7 +335,7 @@ public class TileMap : MonoBehaviour
         return totalCost;
     }
 
-    public List<Node> GenerateRange(int x, int y, int size, UnitLoader unit, bool pathing)
+    public List<Node> GenerateRange(int x, int y, int size, Unit unit, bool pathing)
     {
         // Final list that gets returned
         List<Node> finalList = new List<Node>();
@@ -431,7 +433,7 @@ public class TileMap : MonoBehaviour
         }        
         return finalList;
     }
-    public List<Node> GenerateWalkableRange(int x, int y, int size, UnitLoader unit)
+    public List<Node> GenerateWalkableRange(int x, int y, int size, Unit unit)
     {
         // Final list that gets returned
         List<Node> finalList = new List<Node>();
@@ -508,7 +510,7 @@ public class TileMap : MonoBehaviour
         }
         return finalList;
     } 
-    public List<Node> GenerateAttackableRange(int x, int y, int size, UnitLoader unit)
+    public List<Node> GenerateAttackableRange(int x, int y, int size, Unit unit)
     {
         // Final list that gets returned
         List<Node> finalList = new List<Node>();
@@ -598,7 +600,7 @@ public class TileMap : MonoBehaviour
 
         return finalList;
     }
-    
+
     public void CleanAttackableTiles()
     {
         foreach(Node n in attackableTiles.ToList<Node>())
@@ -622,6 +624,9 @@ public class TileMap : MonoBehaviour
         {
             return false;
         }
+        if (IsOccupied(x, y)) return false;
+        
+        /*
         foreach(UnitLoader u in TurnManager.instance.allyUnits)
         {
             if(u != selectedUnit && u.transform.localPosition == new Vector3(x, y))
@@ -636,11 +641,12 @@ public class TileMap : MonoBehaviour
                 return false;
             }
         }
+        */
         return true;
     }
     public bool IsOccupied(int x, int y)
     {
-        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        foreach(Unit unit in FindObjectsOfType<Unit>())
         {
             if(unit.transform.localPosition == new Vector3(x, y))
             {
@@ -651,9 +657,9 @@ public class TileMap : MonoBehaviour
     }
     public bool IsOccupiedByEnemy(int x, int y)
     {
-        foreach (UnitLoader unit in enemyUnits)
+        foreach (Unit unit in enemyUnits)
         {
-            if(unit.transform.localPosition == new Vector3(x, y))
+            if(unit != null && unit.transform.localPosition == new Vector3(x, y))
             {
                 return true;
             }

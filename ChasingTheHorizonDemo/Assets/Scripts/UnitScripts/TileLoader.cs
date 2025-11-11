@@ -41,7 +41,7 @@ public class TileLoader : MonoBehaviour
         attackableHighlight.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 
-    public void HighlightTile(Unit unit)
+    public void HighlightTile(UnitData unit)
     {
         if(unit.allyUnit)
         {
@@ -66,7 +66,7 @@ public class TileLoader : MonoBehaviour
     public void UpdateOccupationStatus()
     {
         occupied = false;
-        foreach(UnitLoader unit in FindObjectsOfType<UnitLoader>())
+        foreach(Unit unit in FindObjectsOfType<Unit>())
         {
             if(transform.position == unit.transform.position)
             {
